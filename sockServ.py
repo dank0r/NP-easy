@@ -1,10 +1,19 @@
-from flask import Flask
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-app = Flask(__name__)
+import socket
 
-@app.route('/')
-def index():
-    return 'Hello World'
+sock = socket.socket()
+sock.bind(('', 9090))
+sock.listen(1)
+conn, addr = sock.accept()
 
-if __name__ == "__main__":
-    app.run(port='1337')
+print('connected:', addr)
+
+while True:
+    data = conn.recv(1024)
+    if not data:
+        break
+    conn.send(data.upper())
+
+conn.close()
