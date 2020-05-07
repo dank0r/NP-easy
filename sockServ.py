@@ -1,21 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import socket
 
 sock = socket.socket()
 sock.bind(('', 9090))
 sock.listen(1)
-
-str = """<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script type="text/javascript">window.close();</script>
-</head>
-<body>
-</body>
-</html>"""
 
 while True:
     try:
