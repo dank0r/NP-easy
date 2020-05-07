@@ -1,40 +1,25 @@
-import socket
 import json
 
-# import pymysql
-#  
-# con = pymysql.connect('localhost', 'user17', 
-#     's$cret', 'testdb')
-#  
-# with con: 
-#  
-#     cur = con.cursor()
-#     cur.execute("SELECT * FROM cities")
-#  
-#     rows = cur.fetchall()
-#  
-#     for row in rows:
-#         print("{0} {1} {2}".format(row[0], row[1], row[2]))
+
+from flask import Flask
+app = Flask(__name__)
 
 
-sock = socket.socket()
-sock.bind(('', 9090))
-sock.listen(1)
+import pymysql  
+con = pymysql.connect('localhost', 'npadmin',  'nppass', 'npeasy')
 
-while True:
+@app.route('/')
+def index():
     try:
-        conn, addr = sock.accept()
-        print('connected:', addr)
-        data = conn.recv(2048)
-        if not data:
-            break
+        cur = con.cursor()
+        cur.execute("SELECT * FROM events")
 
-        if b'GET' in data:
-            snd = ['asd', 'trek', 'preter']
-            st = json.dumps(snd)
-            conn.send(bytes('HTTP/1.1 200 OK\r\n' + st + '\r\n', 'UTF-8'))
-        else:
-            conn.send()
-        conn.close()
-    except:
-        pass
+        rows = cur.fetchall()
+        st = json.dumps(rows)
+        return st
+    except Exception as e:
+        return str(e)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port='9090')
