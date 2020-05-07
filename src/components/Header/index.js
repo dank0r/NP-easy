@@ -9,6 +9,7 @@ function Header(props) {
         np-easy
       </div>
       <SearchInput placeholder={'Поиск'} className={styles.search} />
+      <div className={styles.avatar} />
     </div>
   );
 }

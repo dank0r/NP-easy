@@ -1,0 +1,67 @@
+.container {
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+}
+
+.container:hover {
+  background-color: #f4f4f8;
+}
+
+.container:first-child {
+  border-radius: 5px 5px 0 0;
+}
+
+
+.container::after {
+  position: relative;
+  bottom: 0;
+  left: 100px;
+  content: "";
+  display: block;
+  background-color: #d0d0d4;
+  width: calc(100% - 100px);
+  height: 1px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.picture {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-image: url("../../img/graph.png");
+  background-size: cover;
+  background-position: center;
+  margin: 20px;
+}
+
+.info {
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.description, .details {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #5f6368;
+}
