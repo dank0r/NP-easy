@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: text;
+}
+
+.icon {
+  height: 25px;
+  width: 25px;
+  background-image: url("./search.svg");
+  background-size: cover;
+  /* just applying filters to get color #7540ee */
+  filter: invert(29%) sepia(63%) saturate(6242%) hue-rotate(251deg) brightness(97%) contrast(93%);
+  margin: 5px;
+}
+
+.input {
+  background: transparent;
+  color: #626262;
+  width: 100%;
+  border: none;
+  font-size: 17px;
+  letter-spacing: 0;
+  font-family: Montserrat, sans-serif;
+  font-weight: lighter;
+  margin: 4px;
+}
+
+.gray {
+  background-color: #d0d0d4;
+  transition: .1s;
+}
+
+.white {
+  background-color: #fff;
+  transition: .1s;
+}
+
+.input::placeholder {
+  color: #818185;
+  font-weight: 100;
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+}

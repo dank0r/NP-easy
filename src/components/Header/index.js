@@ -1,14 +1,16 @@
 import React from 'react';
 import styles from './index.module.css';
+import SearchInput from '../SearchInput';
 
-function MainPage(props) {
+function Header(props) {
   return (
     <div className={styles.container}>
       <div className={styles.logo}>
-        NP-easy
+        np-easy
       </div>
+      <SearchInput placeholder={'Поиск'} className={styles.search} />
     </div>
   );
 }
 
-export default MainPage;
+export default Header;
