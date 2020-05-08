@@ -1,5 +1,5 @@
 import pymysql  
-
+import json
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS
 app = Flask(__name__)
@@ -27,9 +27,10 @@ def index():
                 pt.append(snd)
             return jsonify(pt)
         elif request.method == 'POST':
-            content = request.json
-            print(content)
-            dd = {"responseStatus": "success", "error": "null", "solutions": [{"competitionId": 1, "solution": "some_code", "compiler": "c++", "submissionDateTime": "07.05.2020 23:21", "status": "testing", "result": "", "time": ""}]} 
+            content = request.data.decode("utf-8")
+            content.replace('\"', '"')
+            
+            dd = {"responseStatus": "success", "error": "null", "solutions": [{"competitionId": 1, "solution": "some_code", "compiler": "c++", "submissionDateTime": "07.05.2020 23:21", "status": "testing", "result": "", "time": ""}], 'text':content}
             return jsonify(dd)
     except Exception as e:
         return 'ERROR: ' + str(e)
