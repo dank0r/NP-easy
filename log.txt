@@ -41,3 +41,14 @@
 2020-05-09 16:03:56.355278 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
 2020-05-09 16:04:27.334195 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
 2020-05-09 16:04:32.200608 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
+2020-05-09 20:15:45.413573 ::: postetd: {"type":"SIGN_IN","username":"","password":""}
+2020-05-09 20:29:24.310809 ::: postetd: {"type":"SIGN_UP","username":"dank0r","email":"korogodskii.d@phystech.edu","password":"dank0r"}
+2020-05-09 20:30:46.889707 ::: postetd: {"type":"SIGN_IN","username":"dank0r","password":"dank0r"}
+2020-05-09 20:43:55.612255 ::: postetd: {"type":"SIGN_IN","username":"dank0r","password":"dank0r"}
+2020-05-09 20:45:05.554775 ::: postetd: {"type":"SIGN_UP","username":"test","email":"test@test.com","password":"test"}
+2020-05-09 20:48:56.514124 ::: postetd: {"type":"SIGN_IN","username":"","password":""}
+2020-05-09 20:49:11.131197 ::: postetd: {"type":"SIGN_IN","username":"dank0r","password":"dank0r"}
+2020-05-09 20:56:10.333030 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 20:58:25.475840 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 21:23:01.140119 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
+2020-05-09 21:28:36.430104 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}

@@ -26,9 +26,7 @@ exc("""insert into events(title, previewURL, briefDescription, description, team
 exc("""drop table if exists users;""")
 exc("""create table users (id int(11) auto_increment, username varchar(40), email varchar(40), passHash varchar(300), avatarURL varchar(500), constraint user_pk primary key (id)) CHARSET=utf8;""")
 
-exc("""insert into users(username, email, passHash, avatarURL) values("MigmasADMIN", "h4ckit@mail.ru", "somehash123123123", "nourl");""")
-exc("""insert into users(username, email, passHash, avatarURL) values("user", "something", "something", "something");""")
-
+exc("""insert into users(username, email, passHash, avatarURL) values("mig", "h4ckit@mail.ru", "202cb962ac59075b964b07152d234b70", "");""")
 
 
 ##################################################### tokens (username, token)

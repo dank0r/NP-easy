@@ -6,6 +6,11 @@ then
 
 fi
 
+if [[ $1 == "t" ]];
+then
+	service backend_api status;
+fi
+
 if [[ $1 == "s" ]];
 then 
 	echo 'starting service';
