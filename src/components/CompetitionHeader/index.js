@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { fetchCompetitions } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
+import ReactPlaceholder from 'react-placeholder';
 import styles from './index.module.css';
 
 function CompetitionHeader(props) {
@@ -9,15 +10,24 @@ function CompetitionHeader(props) {
   let { competitionId } = useParams();
   competitionId = +competitionId;
   const competition = props.competitions.find(c => c.id === competitionId);
+
+  function placeholder(key) {
+    console.log(!competition);
+    return (
+      <ReactPlaceholder type='textRow' ready={props.isLoading}>{!competition || competition[key]}</ReactPlaceholder>
+    );
+  }
+
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.info}>
           <div className={styles.block}>
-            <div className={styles.title}>{competition.title}</div>
-            <div className={styles.brief}>{competition.briefDescription}</div>
+            <div className={styles.title}>{!competition || competition.title}</div>
+            <div className={styles.brief}>{!competition || competition.briefDescription}</div>
           </div>
-          <div className={styles.details}>2 месяца осталось • {competition.teams} команды</div>
+          <div className={styles.details}>2 месяца осталось • {!competition || competition.teams} команды</div>
         </div>
         <div className={styles.bottomMenu}>
           <div className={styles.buttonsWrapper}>

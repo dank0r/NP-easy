@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { fetchCompetitions } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
@@ -12,12 +12,15 @@ function CompetitionContent(props) {
   return (
       <div className={styles.contentBox}>
         <div className={styles.title}>{menuItems[props.tab]}</div>
-        <div className={styles.description}>{ReactHtmlParser(props.competition.description)}</div>
+        <div className={styles.description}>{/*ReactHtmlParser(props.competition.description)*/}</div>
       </div>
   );
 }
 
 function Competition(props) {
+  useEffect(() => {
+    props.fetchCompetitions();
+  }, []);
   let { competitionId } = useParams();
   competitionId = +competitionId;
   const competition = props.competitions.find(c => c.id === competitionId);
