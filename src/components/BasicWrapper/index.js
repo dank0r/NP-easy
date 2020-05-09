@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './index.module.css';
 import Header from '../Header';
-import Competitions from '../Competitions';
 
-function MainPage(props) {
+function BasicWrapper(props) {
   return (
     <div className={styles.container}>
       <Header />
-      <Competitions />
+      <div className={styles.wrapper}>
+        {props.children}
+      </div>
     </div>
   );
 }
 
-export default MainPage;
+export default BasicWrapper;

@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+.container {
+  width: 900px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.header {
+  width: 100%;
+  border: 1px solid #d0d0d4;
+  background-color: #fff;
+}
+
+.info {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url("https://www.timeshighereducation.com/sites/default/files/hi_res_case_study_similarity_backbone_network_alpha_0_28_filter_0_6_oord_all_panels_1_2.png") center;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.block {
+  margin: 20px;
+}
+
+.title {
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.brief {
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.details {
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 20px;
+}
+
+.bottomMenu {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonsWrapper {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button {
+  height: 100%;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.button:hover {
+  color: #816dff;
+  border-bottom: 2px solid #816dff;
+  border-top: 2px solid #fff;
+}
+
+.buttonSelected {
+  color: #9b00ff;
+  border-bottom: 2px solid #9b00ff;
+  border-top: 2px solid #fff;
+}
+
+.joinButton {
+  width: 200px;
+  height: 100%;
+  background-color: #9b00ff;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinButton:hover {
+  background-color: #816dff;
+}

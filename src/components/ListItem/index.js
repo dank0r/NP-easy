@@ -1,10 +1,13 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import styles from './index.module.css';
 
+
 function ListItem(props) {
-  const {title, briefDescription, teams} = props.competition;
+  const {id, title, briefDescription, teams} = props.competition;
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => props.history.push(`/competition/${id}`)}>
       <div className={styles.content}>
         <div className={styles.picture} />
         <div className={styles.info}>
@@ -17,4 +20,4 @@ function ListItem(props) {
   );
 }
 
-export default ListItem;
+export default withRouter(ListItem);

@@ -1,15 +1,11 @@
-const initialList = [
-
-];
-
-const competitions = (state={list: initialList, isLoading: false, error: null}, action) => {
+const competitions = (state={list: []}, action) => {
   console.log(action);
   switch (action.type) {
-    case 'FETCH_COMPETITIONS_REQUEST':
+    case 'LOG_IN_REQUEST':
       return {...state, isLoading: true};
-    case 'FETCH_COMPETITIONS_SUCCESS':
+    case 'LOG_IN_SUCCESS':
       return {...state, isLoading: false, list: action.payload.data || state.list};
-    case 'FETCH_COMPETITIONS_FAILURE':
+    case 'LOG_IN_FAILURE':
       return {...state, isLoading: false, error: 'err'};
     default:
       return state
