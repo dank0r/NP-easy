@@ -37,4 +37,62 @@
   border-radius: 50%;
   margin-right: 10px;
   box-shadow: 0 0 10px #e8e8e8;
+  cursor: pointer;
+}
+
+.signIn {
+  color: #816dff;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.signIn:hover {
+  background-color: #e0e1ff;
+}
+
+.signUp {
+  color: white;
+  background-color: #9b00ff;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.signUp:hover {
+  background-color: #a91eff;
+}
+
+.menu {
+  margin-top: 50px;
+}
+
+.menuInfoWrapper {
+  width: 100%;
+  height: 100%;
+  color: #737377;
+  font-family: Roboto, sans-serif;
+  font-size: 13px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.menuItem {
+  font-size: 13px !important;
+  width: 200px !important;
 }

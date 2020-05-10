@@ -12,7 +12,7 @@ function CompetitionContent(props) {
   return (
       <div className={styles.contentBox}>
         <div className={styles.title}>{menuItems[props.tab]}</div>
-        <div className={styles.description}>{/*ReactHtmlParser(props.competition.description)*/}</div>
+        <div className={styles.description}>{!props.competition || ReactHtmlParser(props.competition.description)}</div>
       </div>
   );
 }

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.module.css';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
+import { authentication } from "./actions";
 import thunk from "redux-thunk";
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
@@ -13,26 +14,34 @@ import {
   useParams,
 } from "react-router-dom";
 import { createBrowserHistory } from 'history';
+import {
+  unstable_createMuiStrictModeTheme as createMuiTheme,
+  ThemeProvider
+} from '@material-ui/core/styles';
 import MainPage from './components/pages/MainPage/';
 import CompetitionPage from './components/pages/CompetitionPage/';
+import SignInPage from './components/pages/SignInPage';
+import SignUpPage from './components/pages/SignUpPage';
 
 const client = axios.create({
   baseURL:'http://194.87.239.214:9090/',
   responseType: 'json'
 });
-
 const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
-
-function Competition() {
-  const { competitionId } = useParams();
-  return (<div>{competitionId}</div>);
-}
-
 const history = createBrowserHistory();
 
-function App() {
+const theme = createMuiTheme({});
+
+function App(props) {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(!store.getState().users.list.some(u => u.isMe) && token) {
+      store.dispatch(authentication({ token }));
+    }
+  }, []);
   return (
     <Router history={history}>
+      <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Switch>
           <Route exact path="/">
@@ -41,10 +50,25 @@ function App() {
           <Route exact path="/competition/:competitionId">
             <CompetitionPage />
           </Route>
+          <Route exact path="/signin">
+            <SignInPage />
+          </Route>
+          <Route exact path="/signup">
+            <SignUpPage />
+          </Route>
         </Switch>
       </Provider>
+      </ThemeProvider>
     </Router>
   );
 }
+
+const mapStateToProps = state => ({
+  users: state.users.list,
+});
+
+const mapDispatchToProps = dispatch => ({
+  authentication: (props) => dispatch(authentication(props)),
+});
 
 export default App;

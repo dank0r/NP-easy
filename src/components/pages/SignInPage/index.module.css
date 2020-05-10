@@ -1,0 +1,109 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  font-family: 'Julius Sans One', sans-serif;
+  font-size: 15pt;
+  font-weight: bold;
+  color: #9b00ff;
+  margin-bottom: 20px;
+}
+
+.content {
+  width: 300px;
+  border: 1px solid #d0d0d4;
+  border-radius: 5px;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 15px;
+}
+
+.inputWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.textField {
+  width: 100%;
+  margin: 0px 0px 10px 0px;
+}
+
+.bottomWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.alternative {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+}
+
+.link {
+  margin-left: 5px;
+  color: #816dff;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #ad9cff;
+}
+
+.button {
+  color: white;
+  background-color: #9b00ff;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #a91eff;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fetchCompetitions } from '../../actions';
 import { connect } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { useParams, withRouter } from "react-router-dom";
 import ReactPlaceholder from 'react-placeholder';
 import styles from './index.module.css';
 
@@ -18,6 +18,14 @@ function CompetitionHeader(props) {
     );
   }
 
+  function handleJoin() {
+    const me = props.users.find(u => u.isMe);
+    if(me) {
+
+    } else {
+      props.history.push('/signin');
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -35,7 +43,7 @@ function CompetitionHeader(props) {
               <div key={i} className={styles.button.concat(tab === i ? ` ${styles.buttonSelected}` : '')} onClick={() => setTab(i)}>{item}</div>
             )}
           </div>
-          <div className={styles.joinButton}>Участвовать</div>
+          <div className={styles.joinButton} onClick={handleJoin}>Участвовать</div>
         </div>
       </div>
       {props.render(tab)}
@@ -45,6 +53,7 @@ function CompetitionHeader(props) {
 
 const mapStateToProps = (state) => ({
   competitions: state.competitions.list,
+  users: state.users.list,
   isLoading: state.competitions.isLoading,
 });
 
@@ -52,4 +61,4 @@ const mapDispatchToProps = dispatch => ({
   fetchCompetitions: () => dispatch(fetchCompetitions()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetitionHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CompetitionHeader));
