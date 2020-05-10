@@ -198,3 +198,55 @@
 2020-05-10 15:14:20.226036 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
 2020-05-10 15:15:34.282253 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
 2020-05-10 15:15:53.587655 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:16:23.431694 ::: postetd: {"type":"SIGN_OUT","username":"asd","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:16:32.766555 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:16:37.731883 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:17:07.083043 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:22:13.861499 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:22:18.625399 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:22:23.029839 ::: postetd: {"type":"SIGN_UP", "username":"aersd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:22:47.215763 ::: postetd: {"type":"SIGN_UP", "username":"aersd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:22:50.794482 ::: postetd: {"type":"SIGN_UP", "username":"aersasdd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:37:16.151708 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:37:21.731448 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:49:49.867264 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:52:55.089808 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:53:40.679389 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:53:57.887912 ::: postetd: {"type":"SIGN_UP", "username":"admin", "password":"admin", "email":"ebalooff"}
+2020-05-10 15:54:45.779521 ::: postetd: {"type":"SIGN_UP", "username":"admin", "password":"admin", "email":"ebalooff"}
+2020-05-10 15:55:03.190559 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:55:16.845469 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:55:41.869170 ::: postetd: {"type":"SIGN_UP", "username":"admin", "password":"admin", "email":"ebalooff"}
+2020-05-10 15:55:44.798330 ::: postetd: {"type":"SIGN_UP", "username":"admin", "password":"admin", "email":"ebalooff"}
+2020-05-10 15:55:57.324587 ::: postetd: {"type":"SIGN_IN", "username":"admin", "password":"adimin"}
+2020-05-10 15:57:20.874616 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:58:09.657066 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:58:18.696713 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:58:32.774881 ::: postetd: {"type":"SIGN_IN", "username":"asd", "password":"asd"}
+2020-05-10 16:00:08.507868 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 16:00:47.181217 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 16:00:59.752886 ::: postetd: {"type":"SIGN_IN", "username":"asd", "password":"asd"}
+2020-05-10 16:04:53.609986 ::: postetd: {"type":"SIGN_IN", "username":"asd", "password":"asd"}
+2020-05-10 16:05:02.649517 ::: postetd: {"type":"AUTHENTICATION", "token":"23e905a653208feb653dac366cb8db62"}
+2020-05-10 16:05:09.441820 ::: postetd: {"type":"BYTE", "byte":"asdasdasd"}
+2020-05-10 16:05:57.368482 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 16:06:04.987447 ::: postetd: {"type":"SIGN_IN", "username":"asd", "password":"asd"}
+2020-05-10 16:06:14.028360 ::: postetd: {"type":"AUTHENTICATION", "token":"23e905a653208feb653dac366cb8db62"}
+2020-05-10 16:12:57.897457 ::: postetd: {"type":"SIGN_UP", "username":"mig", "password":"123", "email":"ebalo"}
+2020-05-10 16:13:07.358518 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:13:12.198463 ::: postetd: {"type":"AUTHENTICATION", "token":"09c13c75beadafd3e47bec8b5f407178"}
+2020-05-10 16:14:21.663578 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 16:14:36.785445 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:14:41.101046 ::: postetd: {"type":"AUTHENTICATION", "token":"d80ef36402aa1ee03e33ab07c24c929b"}
+2020-05-10 16:14:51.590971 ::: postetd: {"type":"SIGN_IN", "username":"mig", "token":"d80ef36402aa1ee03e33ab07c24c929b"}
+2020-05-10 16:15:11.392981 ::: postetd: {"type":"SIGN_OUT", "username":"mig", "token":"d80ef36402aa1ee03e33ab07c24c929b"}
+2020-05-10 16:15:38.051571 ::: postetd: {"type":"SIGN_OUT", "username":"mig", "token":"d80ef36402aa1ee03e33ab07c24c929b"}
+2020-05-10 16:15:50.951332 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 16:15:56.629565 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 16:16:20.072798 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:16:27.100811 ::: postetd: {"type":"SIGN_OUT", "username":"mig", "token":"210287176df3defd0b3858f98b8de3c0"}
+2020-05-10 16:16:59.280154 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 16:18:58.109716 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 16:19:01.826618 ::: postetd: {"type":"AUTHENTICATION","token":"4bbe0112e077479861aa68370ef10dc9"}
+2020-05-10 16:19:05.888109 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"4bbe0112e077479861aa68370ef10dc9"}
+2020-05-10 16:28:48.244203 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
