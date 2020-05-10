@@ -250,3 +250,20 @@
 2020-05-10 16:19:01.826618 ::: postetd: {"type":"AUTHENTICATION","token":"4bbe0112e077479861aa68370ef10dc9"}
 2020-05-10 16:19:05.888109 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"4bbe0112e077479861aa68370ef10dc9"}
 2020-05-10 16:28:48.244203 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 16:32:57.234599 ::: postetd: {"type":"AUTHENTICATION","token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:33:31.433395 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:33:43.976963 ::: postetd: {"type":"AUTHENTICATION","token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:33:57.130335 ::: postetd: {"type":"AUTHENTICATION","token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:34:27.872114 ::: postetd: {"type":"AUTHENTICATION", "token":"23e905a653208feb653dac366cb8db62"}
+2020-05-10 16:34:31.412325 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:34:49.671920 ::: postetd: {"type":"AUTHENTICATION", "token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:36:38.568560 ::: postetd: {"type":"AUTHENTICATION","token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:41:11.737508 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 16:41:18.618241 ::: postetd: {"type":"AUTHENTICATION", "token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:41:59.002587 ::: postetd: {"type":"AUTHENTICATION", "token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:42:20.282167 ::: postetd: {"type":"AUTHENTICATION", "token":"016a35169641e125e052a2fc2273e20d"}
+2020-05-10 16:42:27.479907 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 16:42:34.010096 ::: postetd: {"type":"SIGN_IN", "username":"asd", "password":"asd"}
+2020-05-10 16:42:39.365001 ::: postetd: {"type":"AUTHENTICATION", "token":"2cc1152e2d538509c781536b8ee1579a"}
+2020-05-10 16:42:47.401944 ::: postetd: {"type":"SIGN_OUT", "username":"asd", "token":"2cc1152e2d538509c781536b8ee1579a"}
+2020-05-10 16:42:55.976085 ::: postetd: {"type":"AUTHENTICATION", "token":"2cc1152e2d538509c781536b8ee1579a"}

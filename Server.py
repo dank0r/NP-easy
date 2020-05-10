@@ -67,12 +67,17 @@ def index():
                 if checkToken(token):
                    pass 
                 
-                return jsonify({"responseStatus": "success", "error": "null", "solutions": [{"competitionId": compId, "solution": solution, "compiler": cmp, "submissionDateTime": time, "status": "testing", "result": "", "time": ""}]})
+                return jsonify({"error": "null", "solutions": [{"competitionId": compId, "solution": solution, "compiler": cmp, "submissionDateTime": time, "status": "testing", "result": "", "time": ""}]})
             
             ####################################### BYTE
             if pst['type'] == "BYTE":
                 byte = pst["byte"]
-                return jsonify({"responseStatus": "success", "bytesLeft": 664863})
+                return jsonify({"bytesLeft": 664863})
+            
+            ####################################### BYTE
+            if pst['type'] == "BYTE":
+                byte = pst["byte"]
+                return jsonify({"bytesLeft": 664863})
                 
                 
             return 'working on it...'

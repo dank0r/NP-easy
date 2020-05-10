@@ -21,11 +21,11 @@ def createUser(usr, email, passwd):
     rows = execute("select * from users")
     for i in rows:
         if i[1] == usr:
-            return {"responseStatus": "fail", "error": "user exist"}
+            return {"error": "user exist"}
     addUser(usr, email, passwd)
     ids = len(execute("select * from users"))
     userInfo = {"email": str(email), "avatarURL": "", "username": str(usr), "id": str(ids)}
-    ans = {"responseStatus": "success", "error": "null", "user": userInfo}
+    ans = {"error": "null", "user": userInfo}
     return ans
 
 
@@ -38,14 +38,14 @@ def login(usr, passwd):
             correct = True
             break
     if not correct:
-        return {"responseStatus":"error", "error":"wrong user or pass!"}
+        return {"error":"wrong user or pass!"}
     token = checkToken(usr, 1)
     if token is None:
         token = createToken(usr)
     else:
         token = token[2]
     userInfo = {"token": str(token), "email": str(rows[0][2]), "avatarURL": str(rows[0][4]), "username": str(usr), "id": str(rows[0][0])}
-    ans = {"responseStatus": "success", "error": "null", "user": userInfo}
+    ans = {"error": "null", "user": userInfo}
     return ans
         
     
@@ -57,8 +57,26 @@ def logout(usr, token):
             correct = True
             break
     if not correct:
-        return {"responseStatus":"error", "error":"wrong user or token!"}
+        return {"error":"wrong user or token!"}
     execute("delete from tokens where username = '" + usr + "'", 1)
-    ans = {"responseStatus": "success", "error": "null"}
+    ans = {"error": "null"}
     return ans
+
+
+def auth(token):
+    rows = execute("select * from tokens")
+    correct = False
+    usr = ''
+    for i in rows:
+        if i[2] == token:
+            usr = i[1]
+            correct = True
+            break
+    if not correct:
+        return {"error":"wrong token!"}
+    rows = execute("select * from users where username = '" + usr + "'")
+    userInfo = {"token": str(token), "email": str(rows[0][2]), "avatarURL": str(rows[0][4]), "username": str(rows[0][1]), "id": str(rows[0][0])}
+    ans = { "error": "null", "user": userInfo}
+    return ans
+    
         
