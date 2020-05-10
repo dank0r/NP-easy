@@ -29,8 +29,12 @@ function SingInPage(props) {
           <div className={styles.content}>
             <div className={styles.title}>Войти</div>
             <div className={styles.inputWrapper}>
-              <div className={styles.textField}><TextField value={username} onChange={e => setUsername(e.target.value)} fullWidth label="Username" variant="outlined" /></div>
-              <div className={styles.textField}><TextField value={password} onChange={e => setPassword(e.target.value)} fullWidth label="Password" variant="outlined" type="password"/></div>
+              <div className={styles.textField}>
+                <TextField value={username} onKeyPress={e => e.key === 'Enter' ? handleSignIn() : null} onChange={e => setUsername(e.target.value)} fullWidth label="Username" variant="outlined" />
+              </div>
+              <div className={styles.textField}>
+                <TextField value={password}  onKeyPress={e => e.key === 'Enter' ? handleSignIn() : null} onChange={e => setPassword(e.target.value)} fullWidth label="Password" variant="outlined" type="password"/>
+              </div>
             </div>
             <div className={styles.bottomWrapper}>
               <div className={styles.alternative}>Нет аккаунта? <div onClick={() => props.history.push('/signup')} className={styles.link}>Создать.</div></div>
