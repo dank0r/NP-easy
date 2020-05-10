@@ -52,3 +52,149 @@
 2020-05-09 20:58:25.475840 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
 2020-05-09 21:23:01.140119 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
 2020-05-09 21:28:36.430104 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123", "email":"m@ail.ru"}
+2020-05-09 21:39:59.128244 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 21:56:55.280608 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 21:57:30.659643 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 21:57:42.177636 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 22:01:32.433884 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 22:17:22.859581 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 22:17:22.859534 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 22:17:57.203066 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-09 22:18:17.373997 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:32:32.556890 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:32:59.342138 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:39:41.613991 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:41:06.187641 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:46:44.152428 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:49:18.877400 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:49:36.865370 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 11:50:13.344093 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:14:04.042121 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:15:44.874834 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:20:33.399939 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:31:12.849411 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:31:44.396475 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:32:08.465853 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:38:22.263964 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:39:37.618348 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:40:52.239931 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:41:24.043526 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:41:46.188561 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:47:12.782218 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:48:36.010238 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:53:27.071687 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:54:40.611224 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 12:56:53.506347 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:00:59.978503 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:01:53.996200 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:05:02.891269 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:05:05.594392 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:06:33.519841 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:07:01.712360 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:09:35.484824 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:23:04.122785 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:44:17.658662 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:44:22.387395 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"b9417cc7d9914df27cf231a2070040d5"}
+2020-05-10 13:44:37.261551 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"b9417cc7d9914df27cf231a2070040d5"}
+2020-05-10 13:46:08.637617 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:46:36.915691 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:47:01.305210 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"43717331b4d2a8c69255937aab8041d9"}
+2020-05-10 13:48:13.992186 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:48:17.010518 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"16b9320886b420b8a7b2cebfefe322bb"}
+2020-05-10 13:48:53.969515 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:49:45.050115 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:49:56.051637 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"0e3c53e7217a788d121befea003bc13f"}
+2020-05-10 13:51:41.277881 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 13:51:51.634062 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"faacf1805f3c03eebcef1bf9889b54bd"}
+2020-05-10 14:08:28.763303 ::: postetd: {"type":"SIGN_IN","token":null}
+2020-05-10 14:09:23.144850 ::: postetd: {"type":"AUTHENTICATION","token":null}
+2020-05-10 14:11:43.522357 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:11:59.256190 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:20:43.029870 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:23:37.770259 ::: postetd: {"type":"AUTHENTICATION", "token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:28:46.969767 ::: postetd: {"type":"SIGN_IN", "username":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:29:15.620016 ::: postetd: {"type":"AUTHENTICATION", "token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:29:25.490631 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:29:50.216474 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:30:11.642923 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:30:38.093193 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:30:55.657221 ::: postetd: {"type":"AUTHENTICATION","token":"d07f7cd975ffb0f8aebfc87f47b196a9"}
+2020-05-10 14:31:16.571620 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:31:33.092405 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:31:37.398129 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:31:40.408701 ::: postetd: {"type":"AUTHENTICATION","token":"8a9281e93cb28dacba92736fc9ec2215"}
+2020-05-10 14:33:55.414043 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:33:55.416155 ::: mig
+2020-05-10 14:34:14.143901 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:34:14.145901 ::: mig
+2020-05-10 14:35:36.013994 ::: postetd: {"type":"AUTHENTICATION","token":"8a9281e93cb28dacba92736fc9ec2215"}
+2020-05-10 14:36:05.377143 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:36:14.769156 ::: postetd: {"type":"AUTHENTICATION","token":"bdec72cd0b531c30afb2a85ab3392d94"}
+2020-05-10 14:38:59.935487 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:39:27.416486 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 14:39:42.586484 ::: postetd: {"type":"AUTHENTICATION","token":"bdec72cd0b531c30afb2a85ab3392d94"}
+2020-05-10 14:39:49.559650 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:40:52.848057 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 14:41:40.710374 ::: postetd: {"type":"AUTHENTICATION", "token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:41:40.712135 ::: mig
+2020-05-10 14:42:01.600592 ::: postetd: {"type":"AUTHENTICATION","token":"bdec72cd0b531c30afb2a85ab3392d94"}
+2020-05-10 14:42:15.102652 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:42:45.951776 ::: postetd: {"type":"AUTHENTICATION","token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:42:45.953555 ::: mig
+2020-05-10 14:43:11.319051 ::: postetd: {"type":"AUTHENTICATION","token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:43:11.321508 ::: mig
+2020-05-10 14:44:39.383134 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd"}
+2020-05-10 14:44:43.806957 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:44:53.681512 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:44:54.098622 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:45:03.346656 ::: postetd: {"type":"SIGN_OUT","username":"mig","token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:54:05.807226 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:56:22.272336 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:56:30.629159 ::: postetd: {"type":"AUTHENTICATION", "token":"25c7bb029f6bdb994ca369db19219439"}
+2020-05-10 14:57:00.632837 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:57:04.227129 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:57:40.913540 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 14:58:18.303149 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 14:58:20.271320 ::: postetd: {"type":"AUTHENTICATION","token":"824f49c1432920fe427b9163fd080dba"}
+2020-05-10 14:58:20.594639 ::: mig
+2020-05-10 15:00:52.013713 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:03:02.319193 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:03:12.956693 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:04:27.343893 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:04:30.213800 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:06:08.079186 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:06:10.269073 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:06:15.011574 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-10 15:06:23.686291 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:06:27.586148 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:06:30.609258 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:06:40.146501 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:06:40.163348 ::: asd
+2020-05-10 15:06:43.145371 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:06:43.215271 ::: asd
+2020-05-10 15:07:19.584970 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:07:27.171945 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:07:27.180299 ::: asd
+2020-05-10 15:07:55.916409 ::: postetd: {"type":"SIGN_OUT","username":"asd","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:08:00.431718 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:08:10.276741 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:08:10.278580 ::: asd
+2020-05-10 15:09:00.001870 ::: postetd: 
+2020-05-10 15:09:54.431190 ::: postetd: {"type":"SIGN_OUT","username":"asd","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:09:57.791486 ::: postetd: {"type":"BYTE", "byte":"asdasdasd"}
+2020-05-10 15:09:59.344486 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:10:07.826526 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:10:07.828340 ::: asd
+2020-05-10 15:10:49.460220 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:10:51.489210 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:10:59.706747 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:10:59.708564 ::: asd
+2020-05-10 15:11:54.329535 ::: postetd: {"type":"SIGN_OUT","username":"asd","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:11:59.290141 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-10 15:12:03.735346 ::: postetd: {"type":"AUTHENTICATION","token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:12:03.737066 ::: asd
+2020-05-10 15:12:56.464231 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-10 15:13:02.116205 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:14:20.226036 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:15:34.282253 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}
+2020-05-10 15:15:53.587655 ::: postetd: {"type":"AUTHENTICATION", "token":"ca92bf607aaee755cc08dcda596167ee"}

@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
 import pymysql  
 con = pymysql.connect('localhost', 'npadmin',  'nppass', 'npeasy')
 
@@ -33,9 +39,13 @@ exc("""insert into users(username, email, passHash, avatarURL) values("mig", "h4
 exc("""drop table if exists tokens;""")
 exc("""create table tokens (id int(11) auto_increment, username varchar(40), token varchar(32), constraint token_pk primary key (id)) CHARSET=utf8;""")
 
+##################################################### solutions (username, token)
+exc("""drop table if exists tokens;""")
+exc("""create table tokens (id int(11) auto_increment, username varchar(40), token varchar(32), constraint token_pk primary key (id)) CHARSET=utf8;""")
 
 
 ##################################################### end
 exc("""select * from events;""")
 exc("""select * from users;""")
 exc("""commit;""")
+

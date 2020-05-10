@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
 import traceback
 import json
 from os import urandom
@@ -5,10 +11,10 @@ import hashlib
 from flask import Flask, jsonify, send_file, request
 
 from config import *
-from base_api import *
+from baseApi import *
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST']) 
 def index():
     try:
         ######################################################### GET 
@@ -43,9 +49,17 @@ def index():
                 rows = execute("select * from users where username = '" + usr + "' and passHash = '" + str(hashlib.md5(passwd.encode()).hexdigest()) + "'") ###
                 ans = {"responseStatus":"error", "error":"wrong user!"}
                 if len(rows) == 1:
-                    token = urandom(16).hex()
-                    execute("insert into tokens(username, token) values('" + usr +"', '" + str(token) + "')") ###
-                    execute("commit;") ###
+                    tkns = execute("select * from tokens") ###
+                    t = True
+                    token = ''
+                    for i in tkns:
+                        if i[1] == usr:
+                            token = i[2]
+                            t = False
+                            break
+                    if t:
+                        token = urandom(16).hex()
+                        execute("insert into tokens(username, token) values('" + usr +"', '" + str(token) + "')", 1) ###
                     
                     ans = {"responseStatus": "success", "error": "null", "user": {"token": str(token), "email": str(rows[0][2]), "avatarURL": str(rows[0][4]), "username": str(usr), "id": str(rows[0][0])}}
                 return jsonify(ans)
@@ -55,13 +69,22 @@ def index():
                 usr = pst['username']
                 passwd = pst['password']
                 email = pst['email']
-                token = hashlib.md5(passwd.encode()).hexdigest()
-            
-                execute("insert into users(username, email, passHash, avatarURL) values('" + usr + "', '" + email + "', '" + str(token) + "', '')") ###
+                hashed = hashlib.md5(passwd.encode()).hexdigest()
+                rows = execute("select * from users")
+                for i in rows:
+                    if i[1] == usr:
+                        return {"responseStatus": "fail", "error": "user exist"}
                 
-                rows = execute("select * from users where username = '" + usr + "' and passHash = '" + str(token) + "'") ###
-                ans = {"responseStatus": "success", "error": "null", "user": {"token": str(token), "email": str(rows[0][2]), "avatarURL": str(rows[0][4]), "username": str(usr), "id": str(rows[0][0])}}
-                execute('commit;')
+                execute("insert into users(username, email, passHash, avatarURL) values('" + usr + "', '" + email + "', '" + str(hashed) + "', '')", 1) ###
+                
+                rows = execute("select * from users")
+                ids = 0
+                for i in rows:
+                    if i[1] == str(usr):
+                        ids = i[0]
+                token = urandom(16).hex()
+                execute("insert into tokens(username, token) values('" + usr +"', '" + str(token) + "')", 1) ###
+                ans = {"responseStatus": "success", "error": "null", "user": {"token": str(token), "email": str(email), "avatarURL": "", "username": str(usr), "id": str(ids)}}
                 return jsonify(ans)
             
             ####################################### SIGN OUT
@@ -76,30 +99,36 @@ def index():
                 ans =  {responseStatus: "success", "error": "null", user: information_about_user}
                 return jsonify(ans)
             
-            ####################################### AUTHENTICATE
-            if pst['type'] == 'AUTHENTICATE':
+            ####################################### AUTHENTICATION
+            if pst['type'] == 'AUTHENTICATION':
                 token = pst['token']
-                
-                execute("select * from tokens where token = '" + token + "'")
-                if len(rows) == 1:
-                   pass 
-                ans = {"responseStatus":"error", "error":"wrong!"}
-                if len(rows) == 1:
-                    ans =  {responseStatus: "success", "error": "null", user: ""}
-                return jsonify(ans)
+                tk = checkToken(token)
+                if tk is not None:
+                    usr = tk[1]
+                    rows = execute("select * from users where username = '" + usr + "'")
+                    ans =  {"responseStatus": "success", "error": "null", "user": {"token": str(token), "email": str(rows[0][2]), "avatarURL": str(rows[0][4]), "username": str(usr), "id": str(rows[0][0])}}
+                    return jsonify(ans)
+                else:
+                    return "wrong", 404
             
             ####################################### SUBMIT_SOLUTION
             if pst['type'] == "SUBMIT_SOLUTION":
-                compId = pst["competitionId"]
+                competitionId = pst["competitionId"]
                 userId = pst["userId"]
                 token = pst["token"]
                 solution = pst["solution"]
-                cmp = pst["compiler"]
+                compiler = pst["compiler"]
                 time = str(datetime.datetime.now())
                 
-                rows = execute("select * from tokens where token = '" + token + "'")
-                return {"responseStatus": "success", "error": "null", "solutions": [{"competitionId": compId, "solution": solution, "compiler": cmp, "submissionDateTime": time, "status": "testing", "result": "", "time": ""}]}
+                if checkToken(token):
+                   pass 
                 
+                return jsonify({"responseStatus": "success", "error": "null", "solutions": [{"competitionId": compId, "solution": solution, "compiler": cmp, "submissionDateTime": time, "status": "testing", "result": "", "time": ""}]})
+            
+            ####################################### BYTE
+            if pst['type'] == "BYTE":
+                byte = pst["byte"]
+                return jsonify({"responseStatus": "success", "bytesLeft": 664863})
                 
                 
             return 'working on it...'
@@ -117,3 +146,4 @@ def images(name):
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='9090')
+

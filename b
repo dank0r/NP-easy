@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ $1 == "r" ]];
-then 
+then
 	echo 'restart service';
 	service backend_api restart;
 
@@ -34,3 +34,4 @@ then
 	echo 'logs';
 	tail /root/back/log.txt;
 fi
+
