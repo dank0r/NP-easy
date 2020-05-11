@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import './App.module.css';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import { authentication } from "./actions";
-import thunk from "redux-thunk";
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams,
 } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import {
@@ -62,13 +60,5 @@ function App(props) {
     </Router>
   );
 }
-
-const mapStateToProps = state => ({
-  users: state.users.list,
-});
-
-const mapDispatchToProps = dispatch => ({
-  authentication: (props) => dispatch(authentication(props)),
-});
 
 export default App;

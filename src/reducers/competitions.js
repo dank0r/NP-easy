@@ -1,8 +1,4 @@
-const initialList = [
-
-];
-
-const competitions = (state={list: initialList, isLoading: false, error: null}, action) => {
+const competitions = (state={list: [], isLoading: false, error: null}, action) => {
   console.log(action);
   switch (action.type) {
     case 'FETCH_COMPETITIONS_REQUEST':

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { fetchCompetitions } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams, withRouter } from "react-router-dom";
-import ReactPlaceholder from 'react-placeholder';
 import styles from './index.module.css';
 
 function CompetitionHeader(props) {
@@ -11,17 +10,10 @@ function CompetitionHeader(props) {
   competitionId = +competitionId;
   const competition = props.competitions.find(c => c.id === competitionId);
 
-  function placeholder(key) {
-    console.log(!competition);
-    return (
-      <ReactPlaceholder type='textRow' ready={props.isLoading}>{!competition || competition[key]}</ReactPlaceholder>
-    );
-  }
-
   function handleJoin() {
     const me = props.users.find(u => u.isMe);
     if(me) {
-
+      setTab(props.menuItems.length);
     } else {
       props.history.push('/signin');
     }
@@ -43,7 +35,7 @@ function CompetitionHeader(props) {
               <div key={i} className={styles.button.concat(tab === i ? ` ${styles.buttonSelected}` : '')} onClick={() => setTab(i)}>{item}</div>
             )}
           </div>
-          <div className={styles.joinButton} onClick={handleJoin}>Участвовать</div>
+          <div className={tab === props.menuItems.length ? styles.joinButtonSelected : styles.joinButton} onClick={handleJoin}>Участвовать</div>
         </div>
       </div>
       {props.render(tab)}

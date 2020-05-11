@@ -82,3 +82,24 @@ export function authentication({token}) {
     }
   }
 }
+
+export function submitSolution({data, filename, userId, token, competitionId}) {
+  let type = 'SUBMIT_SOLUTION';
+  return {
+    types: [`${type}_REQUEST`, `${type}_SUCCESS`, `${type}_FAILURE`],
+    payload: {
+      request:{
+        url:'/',
+        method: 'POST',
+        data: {
+          type,
+          data,
+          filename,
+          userId,
+          token,
+          competitionId
+        }
+      }
+    }
+  }
+}

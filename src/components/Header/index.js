@@ -60,6 +60,7 @@ function Header(props) {
   const [me, setMe] = useState(null);
 
   useEffect(() => {
+    console.log(123);
     const me = props.users.find(u => u.isMe);
     if(me) {
       setMe(me);

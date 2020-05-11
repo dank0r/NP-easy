@@ -112,3 +112,18 @@
 .joinButton:hover {
   background-color: #816dff;
 }
+
+.joinButtonSelected {
+  width: 200px;
+  height: 100%;
+  color: #9b00ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #9b00ff;
+  border-top: 2px solid #fff;
+}
