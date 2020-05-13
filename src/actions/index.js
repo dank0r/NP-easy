@@ -103,3 +103,74 @@ export function submitSolution({data, filename, userId, token, competitionId}) {
     }
   }
 }
+
+export function fetchSubmissions({ competitionId }) {
+  let type = 'FETCH_SUBMISSIONS';
+  return {
+    types: [`${type}_REQUEST`, `${type}_SUCCESS`, `${type}_FAILURE`],
+    payload: {
+      request:{
+        url:'/',
+        method: 'POST',
+        data: {
+          type,
+          competitionId
+        }
+      }
+    }
+  }
+}
+
+export function joinCompetition({ competitionId, userId, token }) {
+  let type = 'JOIN_COMPETITION';
+  return {
+    types: [`${type}_REQUEST`, `${type}_SUCCESS`, `${type}_FAILURE`],
+    payload: {
+      request:{
+        url:'/',
+        method: 'POST',
+        data: {
+          type,
+          competitionId,
+          userId,
+          token
+        }
+      }
+    }
+  }
+}
+
+export function fetchCompetitionsOfUser({ userId, token }) {
+  let type = 'FETCH_COMPETITIONS';
+  return {
+    types: [`${type}_OF_USER_REQUEST`, `${type}_OF_USER_SUCCESS`, `${type}_OF_USER_FAILURE`],
+    payload: {
+      request:{
+        url:'/',
+        method: 'POST',
+        data: {
+          type,
+          userId,
+          token
+        }
+      }
+    }
+  }
+}
+
+export function fetchUser({ userId }) {
+  let type = 'FETCH_USER';
+  return {
+    types: [`${type}_REQUEST`, `${type}_SUCCESS`, `${type}_FAILURE`],
+    payload: {
+      request:{
+        url:'/',
+        method: 'POST',
+        data: {
+          type,
+          userId
+        }
+      }
+    }
+  }
+}

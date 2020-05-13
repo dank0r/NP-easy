@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d0d0d4;
+  font-family: Montserrat, sans-serif;
+}
+
+.firstCol {
+  padding: 10px;
+  width: 100%;
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.secondCol {
+  padding: 10px;
+  width: 100%;
+  flex-basis: 53%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.team {
+  font-weight: 700;
+  color: black;
+}
+
+.thirdCol {
+  padding: 10px;
+  width: 100%;
+  flex-basis: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fourthCol {
+  padding: 10px;
+  width: 100%;
+  flex-basis: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fifthCol {
+  padding: 10px;
+  width: 100%;
+  flex-basis: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

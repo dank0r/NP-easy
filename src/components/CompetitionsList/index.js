@@ -1,31 +1,45 @@
 import React, {useEffect} from 'react';
-import {fetchCompetitions} from '../../actions';
+import {fetchCompetitions, fetchCompetitionsOfUser} from '../../actions';
 import { connect } from 'react-redux';
 import styles from './index.module.css';
 import ListItem from "../ListItem";
 
 function CompetitionsList(props) {
   useEffect(() => {
+    if(props.me) {
+      const userId = props.me.id;
+      const token = props.me.token;
+      props.fetchCompetitionsOfUser({ userId, token });
+    }
     props.fetchCompetitions();
-  }, []);
-  const listItems = props.competitions.map(c => <ListItem key={c.id} competition={c}/>);
+  }, [props.me]);
+  const comps = props.competitions.map(c => <ListItem key={c.id} competition={c}/>);
+  let myComps = props.myCompetitions.map(id => props.competitions.find(c => c.id === id)).map(c => <ListItem key={c.id} competition={c}/>);
   return (
     <div className={styles.container}>
+      {myComps.length ?
+        (<><div className={styles.title}>Ваши соревнования</div>
+      <div className={styles.shortList}>
+        {myComps}
+      </div></>) : null}
       <div className={styles.title}>Все соревнования</div>
       <div className={styles.list}>
-        {listItems}
+        {comps}
       </div>
     </div>
   );
 }
 
 const mapStateToProps = state => ({
+  me: state.users.list.find(u => u.isMe),
   competitions: state.competitions.list,
+  myCompetitions: state.competitions.myCompetitions,
   isLoading: state.competitions.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCompetitions: () => dispatch(fetchCompetitions()),
+  fetchCompetitionsOfUser: (params) => dispatch(fetchCompetitionsOfUser(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompetitionsList);

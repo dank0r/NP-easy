@@ -21,6 +21,8 @@ import CompetitionPage from './components/pages/CompetitionPage/';
 import SignInPage from './components/pages/SignInPage';
 import SignUpPage from './components/pages/SignUpPage';
 
+/*http://194.87.239.214:9090/*/
+
 const client = axios.create({
   baseURL:'http://194.87.239.214:9090/',
   responseType: 'json'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fetchCompetitions } from '../../actions';
+import { fetchCompetitions, joinCompetition } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams, withRouter } from "react-router-dom";
 import styles from './index.module.css';
@@ -14,6 +14,11 @@ function CompetitionHeader(props) {
     const me = props.users.find(u => u.isMe);
     if(me) {
       setTab(props.menuItems.length);
+      const userId = me.id;
+      const token = me.token;
+      if(!props.myCompetitions.some(id => id === competitionId)) {
+        props.joinCompetition({competitionId, userId, token});
+      }
     } else {
       props.history.push('/signin');
     }
@@ -35,7 +40,9 @@ function CompetitionHeader(props) {
               <div key={i} className={styles.button.concat(tab === i ? ` ${styles.buttonSelected}` : '')} onClick={() => setTab(i)}>{item}</div>
             )}
           </div>
-          <div className={tab === props.menuItems.length ? styles.joinButtonSelected : styles.joinButton} onClick={handleJoin}>Участвовать</div>
+          <div className={tab === props.menuItems.length ? styles.joinButtonSelected : styles.joinButton} onClick={handleJoin}>
+            {props.myCompetitions.some(id => id === competitionId) ? 'Отправить решение' : 'Участвовать'}
+          </div>
         </div>
       </div>
       {props.render(tab)}
@@ -45,12 +52,14 @@ function CompetitionHeader(props) {
 
 const mapStateToProps = (state) => ({
   competitions: state.competitions.list,
+  myCompetitions: state.competitions.myCompetitions,
   users: state.users.list,
   isLoading: state.competitions.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchCompetitions: () => dispatch(fetchCompetitions()),
+  joinCompetition: (params) => dispatch(joinCompetition(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CompetitionHeader));

@@ -34,7 +34,7 @@ function ListItem(props) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.info}>
           <div className={styles.title}>Формат файла</div>
