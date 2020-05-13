@@ -8,11 +8,15 @@ import CompetitionHeader from "../CompetitionHeader";
 import SubmitSolution from '../SubmitSolution';
 import Leaderboard from '../Leaderboard';
 
-const menuItems = ['Обзор', 'Лидерборд'];
+const menuItems = ['Обзор', 'Лидерборд', 'Мои решения'];
 
 function CompetitionContent(props) {
-  const overview = !props.competition || ReactHtmlParser(props.competition.description);
-  const tabsContent = [<div className={styles.description}>{overview}</div>, <Leaderboard {...props} />, <SubmitSolution {...props} />];
+  const overview = !!props.competition && ReactHtmlParser(props.competition.description);
+  const tabsContent = [
+    <div className={styles.description}>{overview}</div>,
+    <Leaderboard {...props} />,
+    <Leaderboard {...props} private />,
+    <SubmitSolution {...props} />];
 
   return (
       <div className={styles.contentBox}>
