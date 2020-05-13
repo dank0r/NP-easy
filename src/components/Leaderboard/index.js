@@ -31,7 +31,7 @@ function Leaderboard(props) {
 
   const submissions = props.submissions.filter(s => s.competitionId === props.competition.id);
   let leaderboardItems = [...submissions].sort((s1, s2) => +s1.submissionDateTime - +s2.submissionDateTime);
-  if(props.private) {
+  if(props.private && props.me) {
     leaderboardItems = leaderboardItems.filter(s => s.userId === props.me.id);
   } else {
     leaderboardItems = leaderboardItems

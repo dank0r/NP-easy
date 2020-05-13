@@ -8,7 +8,7 @@ import CompetitionHeader from "../CompetitionHeader";
 import SubmitSolution from '../SubmitSolution';
 import Leaderboard from '../Leaderboard';
 
-const menuItems = ['Обзор', 'Лидерборд', 'Мои решения'];
+
 
 function CompetitionContent(props) {
   const overview = !!props.competition && ReactHtmlParser(props.competition.description);
@@ -20,7 +20,7 @@ function CompetitionContent(props) {
 
   return (
       <div className={styles.contentBox}>
-        <div className={styles.title}>{props.tab === menuItems.length ? 'Загрузить решение' : menuItems[props.tab]}</div>
+        <div className={styles.title}>{props.tab === props.menuItems.length ? 'Загрузить решение' : props.menuItems[props.tab]}</div>
         <div className={styles.content}>{tabsContent[props.tab]}</div>
       </div>
   );
@@ -38,8 +38,10 @@ function Competition(props) {
   let { competitionId } = useParams();
   competitionId = +competitionId;
   const competition = props.competitions.find(c => c.id === competitionId);
+
+  let menuItems = ['Обзор', 'Лидерборд', 'Мои решения'];
   return (
-    <CompetitionHeader {...props} menuItems={menuItems} render={(tab) => <CompetitionContent competition={competition} tab={tab} />}/>
+    <CompetitionHeader {...props} menuItems={menuItems} render={(tab) => <CompetitionContent  menuItems={menuItems} competition={competition} tab={tab} />}/>
   );
 }
 

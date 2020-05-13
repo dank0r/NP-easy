@@ -9,6 +9,10 @@ function CompetitionHeader(props) {
   let { competitionId } = useParams();
   competitionId = +competitionId;
   const competition = props.competitions.find(c => c.id === competitionId);
+  let menuItems = props.menuItems;
+  if(!props.me) {
+    menuItems.splice(2, 1);
+  }
 
   function handleJoin() {
     const me = props.users.find(u => u.isMe);
@@ -36,7 +40,7 @@ function CompetitionHeader(props) {
         </div>
         <div className={styles.bottomMenu}>
           <div className={styles.buttonsWrapper}>
-            {props.menuItems.map((item, i) =>
+            {menuItems.map((item, i) =>
               <div key={i} className={styles.button.concat(tab === i ? ` ${styles.buttonSelected}` : '')} onClick={() => setTab(i)}>{item}</div>
             )}
           </div>
@@ -53,6 +57,7 @@ function CompetitionHeader(props) {
 const mapStateToProps = (state) => ({
   competitions: state.competitions.list,
   myCompetitions: state.competitions.myCompetitions,
+  me: state.users.list.find(u => u.isMe),
   users: state.users.list,
   isLoading: state.competitions.isLoading,
 });
