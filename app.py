@@ -1,6 +1,5 @@
 from baseApi import *
 
-
 def metGet():
     rows = execute("select * from events") ###
     ans = []
@@ -89,13 +88,31 @@ def competitions(userId, token):
         return {"error":"wrong userId or token"}, 401
     
     ##### 
-    execute("select * from usercompets")
+    rows = execute("select * from usercompets")
     compets = [i[2] for i in rows]
     
     ##### answer
-    ans = {compets}
+    ans = {"error": "null", "competitions":compets}
     return ans, 200
 
+
+def submissions(competitionId):
+    rows = execute("select * from competitions")
+    correct = False
+    for i in rows:
+        if i[0] == competitionId:
+            correct = True
+            break
+    if not correct:
+        return {"error":"wrong competitionId"}, 401
+    #####
+    subs = []
+    rows = execute("select * from solutions where competitionId = '" + str(competitionId) + "'")
+    for i in rows:
+        subs.append({"userId": i[1], "compiler": i[4], "submissionDateTime": i[5], "status": "testing", "result": "", "time": ""})
+    ans = {"error":"null", "submitions":subs}
+    return ans, 200
+    
 
 def submit(data, filename, token, userId, competitionId):
     time = str(datetime.now())
@@ -105,12 +122,13 @@ def submit(data, filename, token, userId, competitionId):
     if usrInfo is None:
         return {"error":"wrong userId or token"}, 401
     
-    ##### competition
+    ##### check competition
     rows = execute("select * from usercompets")
     correct = False
     for i in rows:
-        if i[1] == usrInfo[1] and i[2] == competitionId:
+        if i[1] == userId and i[2] == competitionId:
             correct = True
+            break
     if not correct:
         return {"error":"wrong competitionId"}, 401
     
@@ -120,17 +138,17 @@ def submit(data, filename, token, userId, competitionId):
     ##### compiler
     comp = None
     if '.cpp' in filename:
-        comp = 'cpp'
+        comp = 'gcc'
     if '.py' in filename:
         comp = 'python'
     if comp is None:
         return {"error":"wrong file type"}, 401
     
     ##### save sol 
-    addSolution(userId, competiionId, sol, comp, time)
+    addSolution(userId, competitionId, sol, comp, time)
     
     ##### answer
-    rows = execute("select * from solutions where userId = '" + userId + "'")
+    rows = execute("select * from solutions where userId = '" + str(userId) + "'")
     sols = []
     for i in rows:
         sols.append({"competitionId": i[2], "solution": i[3], "compiler":i[4], "submissionDateTime":i[5], "status":"testing", "result":"", "time":""})
@@ -138,3 +156,30 @@ def submit(data, filename, token, userId, competitionId):
     ans = {"error":"null", "solutions":sols}
     return ans, 200
         
+    
+def join(userId, competitionId, token):
+    ##### check token and user
+    usrInfo = checkId(userId, token)
+    if usrInfo is None:
+        return {"error":"wrong userId or token"}, 401
+    
+    ##### check competition
+    rows = execute("select * from competitions")
+    correct = False
+    for i in rows:
+        if i[0] == competitionId:
+            correct = True 
+            break
+    if not correct:
+        return {"error":"wrong competitionId"}, 401
+    ##### 
+    rows = execute("select * from usercompets")
+    for i in rows:
+        if i[1] == userId and i[2] == competitionId:
+            return {"error":"already joined"}, 401
+    joincomp(userId, competitionId)
+    ans = {"error":"null"}
+    return ans, 200
+    
+    
+    

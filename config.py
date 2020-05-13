@@ -7,8 +7,8 @@ app.config['JSON_AS_ASCII'] = False
 CORS(app)
 
 
-import datetime
+from datetime import datetime
 def log(s):
     f = open('/root/back/log.txt', 'a')
-    f.write(str(datetime.datetime.now()) + ' ::: ' + str(s) + '\n')
+    f.write(str(datetime.now()) + ' ::: ' + str(s) + '\n')
     f.close()

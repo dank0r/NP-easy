@@ -2,7 +2,6 @@ import traceback
 import json
 from flask import Flask, jsonify, send_file, request
 
-from config import *
 from app import *
 
 @app.route('/', methods=['GET', 'POST']) 
@@ -73,13 +72,26 @@ def index():
                 userId = pst["userId"]
                 token = pst["token"]
                 ########
-                ans = competitions(userId, token)
-                return jsonify({"bytesLeft": 664863})
+                ans, status = competitions(userId, token)
+                return jsonify(ans), status
             
-            ####################################### BYTE
-            if pst['type'] == "BYTE":
-                byte = pst["byte"]
-                return jsonify({"bytesLeft": 664863})
+            ####################################### JOIN_COMPETITION
+            if pst['type'] == "JOIN_COMPETITION":
+                ########
+                userId = pst["userId"]
+                competitionId = pst["competitionId"]
+                token = pst["token"]
+                ########
+                ans, status = join(userId, competitionId, token)
+                return jsonify(ans), status
+            
+            ####################################### FETCH_SUBMISSIONS
+            if pst['type'] == "FETCH_SUBMISSIONS":
+                ########
+                competitionId = pst["competitionId"]
+                ########
+                ans, status = submissions(competitionId)
+                return jsonify(ans), status
                 
                 
             return 'working on it...', 404

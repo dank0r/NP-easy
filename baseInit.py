@@ -37,9 +37,11 @@ exc("""create table tokens (id int(11) auto_increment, username varchar(40), tok
 exc("""drop table if exists usercompets;""")
 exc("""create table usercompets (id int(11) auto_increment, userId int(11), competitionId int(11), constraint usercompet_pk primary key (id)) CHARSET=utf8;""")
 
+exc("""insert into usercompets(userId, competitionId) values(1, 1)""")
+
 ##################################################### solutions (userId, competiionId, solution, compiler, time)
 exc("""drop table if exists solutions;""")
-exc("""create table solutions (id int(11) auto_increment, userId int(11), competitionId int(11), solution varchar(1500), compiler varchar(40), time varchar(20), constraint solution_pk primary key (id)) CHARSET=utf8;""")
+exc("""create table solutions (id int(11) auto_increment, userId int(11), competitionId int(11), solution varchar(10000), compiler varchar(40), time varchar(60), constraint solution_pk primary key (id)) CHARSET=utf8;""")
 
 
 ##################################################### end

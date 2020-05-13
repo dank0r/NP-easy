@@ -2,6 +2,7 @@ import pymysql
 from os import urandom
 import hashlib
 import base64
+from config import *
 
 salt = 'loleasy'
 
@@ -55,11 +56,20 @@ def addUser(usr, email, passwd):
     
 
 def dcd(data):
-    dtd = data.split('data:application/octet-stream;base64:')[1]
+    log(data)
+    dtd = data.split('data:application/octet-stream;base64,')[1]
     dtd = base64.b64decode(dtd)
     return dtd
 
+
 def addSolution(userId, competitionId, sol, comp, time):
-    solution = base64.b64encode(sol)
-    execute("insert into solutions(userId, competitionId, solution, compiler, time) values('" + userId + "', '" + competitionId + "', '" + solution + "', '" + comp + "', '" + time  + "')")
+    solution = base64.b64encode(sol).decode('ascii')
+    execute("insert into solutions(userId, competitionId, solution, compiler, time) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "')", 1)
+    
+    
+def joincomp(userId, competitionId):
+    execute("insert into usercompets(userId, competitionId) values('" + str(userId) + "', '" + str(competitionId) + "')", 1)
+    
+    
+    
     
