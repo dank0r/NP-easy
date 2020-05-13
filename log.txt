@@ -267,3 +267,13 @@
 2020-05-10 16:42:39.365001 ::: postetd: {"type":"AUTHENTICATION", "token":"2cc1152e2d538509c781536b8ee1579a"}
 2020-05-10 16:42:47.401944 ::: postetd: {"type":"SIGN_OUT", "username":"asd", "token":"2cc1152e2d538509c781536b8ee1579a"}
 2020-05-10 16:42:55.976085 ::: postetd: {"type":"AUTHENTICATION", "token":"2cc1152e2d538509c781536b8ee1579a"}
+2020-05-13 16:07:04.764515 ::: postetd: {"type":"SIGN_UP", "username":"asd", "password":"asd", "email":"ebalo"}
+2020-05-13 17:25:54.668231 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-13 17:50:04.276844 ::: postetd: {"type":"SIGN_UP", "username":"mig", "password":"123", "email":"ebalo"}
+2020-05-13 17:51:24.356703 ::: postetd: {"type":"SIGN_IN", "username":"mig", "password":"123"}
+2020-05-13 17:51:32.139191 ::: postetd: {"type":"AUTHENTICATION", "token":"bdacbb202e28d10f14a41f305a5b7f2d"}
+2020-05-13 18:54:54.938912 ::: postetd: {"type":"AUTHENTICATION","token":"ef7480aaf07e92624f8d9ab8deababac"}
+2020-05-13 19:24:53.997386 ::: postetd: {"type":"AUTHENTICATION","token":"ef7480aaf07e92624f8d9ab8deababac"}
+2020-05-13 19:25:01.774941 ::: postetd: {"type":"SIGN_IN","username":"mig","password":"123"}
+2020-05-13 19:25:35.103152 ::: postetd: {"type":"AUTHENTICATION","token":"70680b3b7598449c251228963d0cf96d"}
+2020-05-13 19:26:06.721071 ::: postetd: {"type":"AUTHENTICATION","token":"70680b3b7598449c251228963d0cf96d"}

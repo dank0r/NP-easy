@@ -10,8 +10,8 @@ def index():
     try:
         ######################################################### GET 
         if request.method == 'GET':
-            ans = metGet()
-            return jsonify(ans)
+            ans, status = metGet()
+            return jsonify(ans), status
         
         ######################################################### POST         
         elif request.method == 'POST':
@@ -25,8 +25,8 @@ def index():
                 usr = pst['username']
                 passwd = pst['password']
                 ########
-                ans = login(usr, passwd)
-                return jsonify(ans)
+                ans, status  = login(usr, passwd)
+                return jsonify(ans), status 
             
             ####################################### SIGN UP
             if pst['type'] == 'SIGN_UP':
@@ -35,8 +35,8 @@ def index():
                 passwd = pst['password']
                 email = pst['email']
                 ########                
-                ans = createUser(usr, email, passwd)
-                return jsonify(ans)
+                ans, status = createUser(usr, email, passwd)
+                return jsonify(ans), status 
             
             ####################################### SIGN OUT
             if pst['type'] == 'SIGN_OUT':
@@ -44,34 +44,36 @@ def index():
                 usr = pst['username']
                 token = pst['token']
                 ########
-                ans = logout(usr, token)
-                return jsonify(ans)
+                ans, status = logout(usr, token)
+                return jsonify(ans), status
             
             ####################################### AUTHENTICATION
             if pst['type'] == 'AUTHENTICATION':
                 ########
                 token = pst['token']
                 ########
-                ans = auth(token)
-                return jsonify(ans)
+                ans, status = auth(token)
+                return jsonify(ans), status
             
             ####################################### SUBMIT_SOLUTION
             if pst['type'] == "SUBMIT_SOLUTION":
+                ########
+                data = pst["data"]
+                filename = pst["filename"]
+                token = pst["token"]
+                userId = pst["userId"]
                 competitionId = pst["competitionId"]
+                ########                
+                ans, status = submit(data, filename, token, userId, competitionId)
+                return jsonify(ans), status
+            
+            ####################################### FETCH_COMPETITIONS
+            if pst['type'] == "FETCH_COMPETITIONS":
+                ########
                 userId = pst["userId"]
                 token = pst["token"]
-                solution = pst["solution"]
-                compiler = pst["compiler"]
-                time = str(datetime.datetime.now())
-                
-                if checkToken(token):
-                   pass 
-                
-                return jsonify({"error": "null", "solutions": [{"competitionId": compId, "solution": solution, "compiler": cmp, "submissionDateTime": time, "status": "testing", "result": "", "time": ""}]})
-            
-            ####################################### BYTE
-            if pst['type'] == "BYTE":
-                byte = pst["byte"]
+                ########
+                ans = competitions(userId, token)
                 return jsonify({"bytesLeft": 664863})
             
             ####################################### BYTE
@@ -80,7 +82,7 @@ def index():
                 return jsonify({"bytesLeft": 664863})
                 
                 
-            return 'working on it...'
+            return 'working on it...', 404
     except Exception as e:
         return 'ERROR: ' + str(traceback.format_exc())
 
