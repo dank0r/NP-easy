@@ -17,7 +17,7 @@ function CompetitionsList(props) {
   let myComps = props.myCompetitions.map(id => props.competitions.find(c => c.id === id)).map(c => <ListItem key={c.id} competition={c}/>);
   return (
     <div className={styles.container}>
-      {myComps.length ?
+      {myComps.length && props.me ?
         (<><div className={styles.title}>Ваши соревнования</div>
       <div className={styles.shortList}>
         {myComps}

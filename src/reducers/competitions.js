@@ -15,6 +15,9 @@ const competitions = (state={list: [], myCompetitions: [], isLoading: false, err
           .filter(idNew => !state.myCompetitions.some(idOld => idOld === idNew)))};
     case 'FETCH_COMPETITIONS_OF_USER_FAILURE':
       return {...state, isLoading: false, error: 'err'};
+
+    case 'SIGN_OUT_REQUEST':
+      return {...state, myCompetitions: []};
     default:
       return state
   }
