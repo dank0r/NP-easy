@@ -84,7 +84,7 @@ def index():
                 ########
                 ans, status = join(userId, competitionId, token)
                 return jsonify(ans), status
-            
+             
             ####################################### FETCH_SUBMISSIONS
             if pst['type'] == "FETCH_SUBMISSIONS":
                 ########
@@ -92,11 +92,19 @@ def index():
                 ########
                 ans, status = submissions(competitionId)
                 return jsonify(ans), status
+            
+            ####################################### FETCH_USER
+            if pst['type'] == "FETCH_USER":
+                ########
+                userId = pst["userId"]
+                ########
+                ans, status = info(userId)
+                return jsonify(ans), status
                 
-                
+            
             return 'working on it...', 404
     except Exception as e:
-        return 'ERROR: ' + str(traceback.format_exc())
+        return jsonify({'error':str(traceback.format_exc())}), 1
 
     
 @app.route('/images/<name>', methods=['POST', 'GET'])

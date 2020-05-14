@@ -81,7 +81,6 @@ def auth(token):
 
 
 def competitions(userId, token):
-    # {"type": "FETCH_COMPETITIONS", "userId": 1, "token": "lksjdfh84hri02"} 
     ##### check token and user
     usrInfo = checkId(userId, token)
     if usrInfo is None:
@@ -109,8 +108,8 @@ def submissions(competitionId):
     subs = []
     rows = execute("select * from solutions where competitionId = '" + str(competitionId) + "'")
     for i in rows:
-        subs.append({"userId": i[1], "compiler": i[4], "submissionDateTime": i[5], "status": "testing", "result": "", "time": ""})
-    ans = {"error":"null", "submitions":subs}
+        subs.append({"competitionId":competitionId, "userId": i[1], "compiler": i[4], "submissionDateTime": i[5], "status": "testing", "result": "", "time": ""})
+    ans = subs
     return ans, 200
     
 
@@ -145,13 +144,16 @@ def submit(data, filename, token, userId, competitionId):
         return {"error":"wrong file type"}, 401
     
     ##### save sol 
-    addSolution(userId, competitionId, sol, comp, time)
+    result = "NO RES FUCK YOU"
+    result = run(sol, filename)
+    
+    addSolution(userId, competitionId, sol, comp, time, result)
     
     ##### answer
     rows = execute("select * from solutions where userId = '" + str(userId) + "'")
     sols = []
     for i in rows:
-        sols.append({"competitionId": i[2], "solution": i[3], "compiler":i[4], "submissionDateTime":i[5], "status":"testing", "result":"", "time":""})
+        sols.append({"competitionId": i[2], "solution": i[3], "compiler":i[4], "submissionDateTime":i[5], "status":"testing", "result":i[6], "time":""})
         
     ans = {"error":"null", "solutions":sols}
     return ans, 200
@@ -182,4 +184,10 @@ def join(userId, competitionId, token):
     return ans, 200
     
     
-    
+def info(userId):
+    rows = execute("select * from users")
+    for i in rows:
+        if i[0] == userId:
+            return {"id":i[0], "username":i[1], "email":i[2], "avatarURL":i[4]}, 200
+    ans = {"error":"wrong userId"}
+    return ans, 401

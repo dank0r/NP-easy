@@ -39,9 +39,9 @@ exc("""create table usercompets (id int(11) auto_increment, userId int(11), comp
 
 exc("""insert into usercompets(userId, competitionId) values(1, 1)""")
 
-##################################################### solutions (userId, competiionId, solution, compiler, time)
+##################################################### solutions (userId, competiionId, solution, compiler, time, result)
 exc("""drop table if exists solutions;""")
-exc("""create table solutions (id int(11) auto_increment, userId int(11), competitionId int(11), solution varchar(10000), compiler varchar(40), time varchar(60), constraint solution_pk primary key (id)) CHARSET=utf8;""")
+exc("""create table solutions (id int(11) auto_increment, userId int(11), competitionId int(11), solution varchar(10000), compiler varchar(40), time varchar(60), result varchar(40), constraint solution_pk primary key (id)) CHARSET=utf8;""")
 
 
 ##################################################### end

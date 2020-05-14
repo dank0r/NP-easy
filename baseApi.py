@@ -3,9 +3,26 @@ from os import urandom
 import hashlib
 import base64
 from config import *
+import subprocess
+import socket
 
 salt = 'loleasy'
 
+
+def run(sol, filename):
+    sock = socket.socket()
+    sock.connect(('localhost', 1100))
+    log(filename.encode())
+    sock.send((filename + '\0').encode())
+    result = str(sock.recv(1024))
+    sock.send(sol)
+    result = str(sock.recv(1024))
+    if 'OK' in result:
+        result = 'ok'
+    else:
+        result = 'false'
+    sock.close()
+    return result
 
 def execute(s, com = 0):
     con = pymysql.connect('localhost', 'npadmin',  'nppass', 'npeasy')
@@ -56,15 +73,14 @@ def addUser(usr, email, passwd):
     
 
 def dcd(data):
-    log(data)
-    dtd = data.split('data:application/octet-stream;base64,')[1]
+    dtd = data.split(';base64,')[1]
     dtd = base64.b64decode(dtd)
     return dtd
 
 
-def addSolution(userId, competitionId, sol, comp, time):
-    solution = base64.b64encode(sol).decode('ascii')
-    execute("insert into solutions(userId, competitionId, solution, compiler, time) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "')", 1)
+def addSolution(userId, competitionId, sol, comp, time, result):
+    solution = base64.b64encode(sol).decode('utf-8')
+    execute("insert into solutions(userId, competitionId, solution, compiler, time, result) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "', '" + str(result) + "')", 1)
     
     
 def joincomp(userId, competitionId):
