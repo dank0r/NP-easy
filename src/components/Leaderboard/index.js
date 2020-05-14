@@ -25,8 +25,10 @@ function LeaderboardItem(props) {
 
 function Leaderboard(props) {
   useEffect(() => {
-    const competitionId = props.competition.id;
-    props.fetchSubmissions({competitionId});
+    if(props.competition) {
+      const competitionId = props.competition.id;
+      props.fetchSubmissions({competitionId});
+    }
   }, []);
 
   const submissions = props.submissions.filter(s => s.competitionId === props.competition.id);
