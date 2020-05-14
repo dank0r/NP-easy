@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSubmissions, fetchUser } from "../../actions";
@@ -24,10 +24,21 @@ function LeaderboardItem(props) {
 }
 
 function Leaderboard(props) {
+  const [intervalId, setIntervalId] = useState(null);
+
   useEffect(() => {
     if(props.competition) {
       const competitionId = props.competition.id;
       props.fetchSubmissions({competitionId});
+      if(!intervalId) {
+        const interval = setInterval(() => {
+          props.fetchSubmissions({competitionId});
+        }, 5000);
+        setIntervalId(interval);
+      } else if(props.submissions && !props.submissions.some(s => s.status === 'testing')) {
+        clearInterval(intervalId);
+        setIntervalId(null);
+      }
     }
   }, []);
 
