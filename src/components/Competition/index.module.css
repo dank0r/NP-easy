@@ -7,6 +7,10 @@
   margin-top: 20px;
 }
 
+.dark {
+  background-color: #252525 !important;
+}
+
 .title {
   width: 100%;
   height: 50px;

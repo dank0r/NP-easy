@@ -6,6 +6,10 @@
   align-items: flex-start;
 }
 
+.dark {
+  background-color: #252525 !important;
+}
+
 .title {
   font-family: Montserrat, sans-serif;
   font-weight: bolder;

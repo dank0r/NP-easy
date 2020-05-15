@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
 import styles from './index.module.css';
 
@@ -7,7 +8,7 @@ function ListItem(props) {
   const {id, title, briefDescription, teams} = props.competition;
 
   return (
-    <div className={styles.container} onClick={() => props.history.push(`/competition/${id}`)}>
+    <div className={props.dark ? styles.container.concat(` ${styles.dark}`) : styles.container} onClick={() => props.history.push(`/competition/${id}`)}>
       <div className={styles.content}>
         <div className={styles.picture} />
         <div className={styles.info}>
@@ -20,4 +21,8 @@ function ListItem(props) {
   );
 }
 
-export default withRouter(ListItem);
+const mapStateToProps = state => ({
+  dark: state.dark,
+});
+
+export default connect(mapStateToProps)(withRouter(ListItem));

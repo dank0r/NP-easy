@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { signOut } from "../../actions";
+import Switch from '@material-ui/core/Switch';
+import { signOut, toggleDark } from "../../actions";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import styles from './index.module.css';
@@ -58,6 +59,7 @@ function SignInUpInvitation(props) {
 
 function Header(props) {
   const [me, setMe] = useState(null);
+  const [dark, setDark] = useState(null);
 
   useEffect(() => {
     console.log(123);
@@ -70,11 +72,19 @@ function Header(props) {
   });
 
   return (
-    <div className={styles.container}>
+    <div className={props.dark ? styles.container.concat(` ${styles.dark}`) : styles.container}>
       <div className={styles.logo} onClick={() => props.history.push('/')}>
         np-easy
       </div>
       <SearchInput placeholder={'Поиск'} className={styles.search} />
+      <Switch
+        name="dark"
+        checked={dark}
+        onChange={() => {
+          setDark(!dark);
+          props.toggleDark();
+        }}
+      />
       {me ? <Profile {...props} me={me} /> : <SignInUpInvitation {...props} />}
     </div>
   );
@@ -82,10 +92,12 @@ function Header(props) {
 
 const mapStateToProps = state => ({
   users: state.users.list,
+  dark: state.dark,
 });
 
 const mapDispatchToProps = dispatch => ({
   signOut: (props) => dispatch(signOut(props)),
+  toggleDark: () => dispatch(toggleDark()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

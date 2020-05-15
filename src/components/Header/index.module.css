@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.dark {
+  background-color: #252525;
+}
+
 .logo {
   width: 100px;
   height: 100%;

@@ -29,7 +29,7 @@ function CompetitionHeader(props) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={props.dark ? styles.container.concat(` ${styles.dark}`) : styles.container}>
       <div className={styles.header}>
         <div className={styles.info}>
           <div className={styles.block}>
@@ -38,7 +38,7 @@ function CompetitionHeader(props) {
           </div>
           <div className={styles.details}>2 месяца осталось • {!competition || competition.teams} команды</div>
         </div>
-        <div className={styles.bottomMenu}>
+        <div className={props.dark ? styles.bottomMenu.concat(` ${styles.dark}`) : styles.bottomMenu}>
           <div className={styles.buttonsWrapper}>
             {menuItems.map((item, i) =>
               <div key={i} className={styles.button.concat(tab === i ? ` ${styles.buttonSelected}` : '')} onClick={() => setTab(i)}>{item}</div>
@@ -60,6 +60,7 @@ const mapStateToProps = (state) => ({
   me: state.users.list.find(u => u.isMe),
   users: state.users.list,
   isLoading: state.competitions.isLoading,
+  dark: state.dark
 });
 
 const mapDispatchToProps = dispatch => ({

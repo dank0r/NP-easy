@@ -9,6 +9,10 @@
   margin: 20px;
 }
 
+.dark {
+  background-color: #252525;
+}
+
 .header {
   width: 100%;
   border: 1px solid #d0d0d4;
@@ -63,6 +67,10 @@
   align-items: center;
 }
 
+.dark {
+  background-color: #252525;
+}
+
 .buttonsWrapper {
   height: 100%;
   display: flex;
@@ -86,13 +94,13 @@
 .button:hover {
   color: #816dff;
   border-bottom: 2px solid #816dff;
-  border-top: 2px solid #fff;
+  border-top: 2px solid rgba(255, 255, 255, 0);
 }
 
 .buttonSelected {
   color: #9b00ff;
   border-bottom: 2px solid #9b00ff;
-  border-top: 2px solid #fff;
+  border-top: 2px solid rgba(255, 255, 255, 0);
 }
 
 .joinButton {

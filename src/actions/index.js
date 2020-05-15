@@ -174,3 +174,9 @@ export function fetchUser({ userId }) {
     }
   }
 }
+
+export function toggleDark() {
+  return {
+    type: 'TOGGLE_DARK'
+  }
+}

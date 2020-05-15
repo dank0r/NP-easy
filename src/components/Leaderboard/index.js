@@ -17,7 +17,7 @@ function LeaderboardItem(props) {
       <div className={styles.firstCol}>{i + 1}</div>
       <div className={styles.secondCol.concat(` ${styles.team}`)}>{author ? author.username : ''}</div>
       <div className={styles.thirdCol}>{s.result || 'no result yet'}</div>
-      <div className={styles.fourthCol}>{!!author && props.submissions.filter(s => s.userId === author.id).length}</div>
+      <div className={styles.fourthCol}>{props.private ? s.status : (!!author && props.submissions.filter(s => s.userId === author.id).length)}</div>
       <div className={styles.fifthCol}>{s.submissionDateTime}</div>
     </div>
   );
@@ -59,7 +59,7 @@ function Leaderboard(props) {
         <div className={styles.firstCol}>#</div>
         <div className={styles.secondCol}>Username</div>
         <div className={styles.thirdCol}>Результат</div>
-        <div className={styles.fourthCol}>Посылки</div>
+        <div className={styles.fourthCol}>{props.private ? 'Статус' : 'Посылки'}</div>
         <div className={styles.fifthCol}>Последняя</div>
       </div>
       {leaderboardItems}

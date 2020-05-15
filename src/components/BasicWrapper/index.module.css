@@ -17,3 +17,11 @@
   align-items: center;
   overflow: auto;
 }
+
+.dark {
+  background-color: #252525;
+}
+
+.dark * {
+  color: white;
+}

@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.dark {
+  background-color: #252525;
+}
+
 .container:hover {
   background-color: #f4f4f8;
 }
