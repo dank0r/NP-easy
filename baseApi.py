@@ -8,21 +8,49 @@ import socket
 
 salt = 'loleasy'
 
+    
+def snd(sock, s):
+    log("_"*5 + str(s))
+    sock.send(s)
+    result = str(sock.recv(1024))
+    log(" "*10 + result)
+    return result
 
-def run(sol, filename):
+
+def run(sol, filename, solutionId):
     sock = socket.socket()
     sock.connect(('localhost', 1100))
-    log(filename.encode())
-    sock.send((filename + '\0').encode())
-    result = str(sock.recv(1024))
-    sock.send(sol)
-    result = str(sock.recv(1024))
-    if 'OK' in result:
-        result = 'ok'
-    else:
-        result = 'false'
+    #####
+    snd(sock, (str(solutionId) + '\0').encode())
+    snd(sock, (str(0) + '\0').encode())
+    snd(sock, str(filename + '\0').encode())
+    result = snd(sock, sol)
+    #####
     sock.close()
     return result
+
+
+def stat(solutionId):
+    sock = socket.socket()
+    sock.connect(('localhost', 1100))
+    #####
+    snd(sock, (str(solutionId) + '\0').encode())
+    result = snd(sock, (str(1) + '\0').encode())
+    #####
+    sock.close()
+    return result 
+    
+    
+def getRes(solutionId):
+    sock = socket.socket()
+    sock.connect(('localhost', 1100))
+    #####
+    snd(sock, (str(solutionId) + '\0').encode())
+    result = snd(sock, (str(2) + '\0').encode())
+    #####
+    sock.close()
+    return result 
+    
 
 def execute(s, com = 0):
     con = pymysql.connect('localhost', 'npadmin',  'nppass', 'npeasy')
@@ -78,9 +106,10 @@ def dcd(data):
     return dtd
 
 
-def addSolution(userId, competitionId, sol, comp, time, result):
+def addSolution(userId, competitionId, sol, comp, time):
     solution = base64.b64encode(sol).decode('utf-8')
-    execute("insert into solutions(userId, competitionId, solution, compiler, time, result) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "', '" + str(result) + "')", 1)
+    execute("insert into solutions(userId, competitionId, solution, compiler, time, result, status) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "', '0', 'waiting')", 1)
+    return execute("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'npeasy' AND   TABLE_NAME   = 'solutions';")[0][0] - 1
     
     
 def joincomp(userId, competitionId):
