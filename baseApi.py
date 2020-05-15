@@ -18,38 +18,47 @@ def snd(sock, s):
 
 
 def run(sol, filename, solutionId):
-    sock = socket.socket()
-    sock.connect(('localhost', 1100))
-    #####
-    snd(sock, (str(solutionId) + '\0').encode())
-    snd(sock, (str(0) + '\0').encode())
-    snd(sock, str(filename + '\0').encode())
-    result = snd(sock, sol)
-    #####
-    sock.close()
-    return result
+    try:
+        sock = socket.socket()
+        sock.connect(('localhost', 1100))
+        #####
+        snd(sock, (str(solutionId) + '\0').encode())
+        snd(sock, (str(0) + '\0').encode())
+        snd(sock, str(filename + '\0').encode())
+        result = snd(sock, sol)
+        #####
+        sock.close()
+        return result
+    except:
+        return "--Connection refused0-----"
 
 
 def stat(solutionId):
-    sock = socket.socket()
-    sock.connect(('localhost', 1100))
-    #####
-    snd(sock, (str(solutionId) + '\0').encode())
-    result = snd(sock, (str(1) + '\0').encode())
-    #####
-    sock.close()
-    return result 
+    try:
+        sock = socket.socket()
+        sock.connect(('localhost', 1100))
+        #####
+        snd(sock, (str(solutionId) + '\0').encode())
+        result = snd(sock, (str(1) + '\0').encode())
+        #####
+        sock.close()
+        return result 
+    except:
+        return "--Connection refused1-----"
     
     
 def getRes(solutionId):
-    sock = socket.socket()
-    sock.connect(('localhost', 1100))
-    #####
-    snd(sock, (str(solutionId) + '\0').encode())
-    result = snd(sock, (str(2) + '\0').encode())
-    #####
-    sock.close()
-    return result 
+    try:
+        sock = socket.socket()
+        sock.connect(('localhost', 1100))
+        #####
+        snd(sock, (str(solutionId) + '\0').encode())
+        result = snd(sock, (str(2) + '\0').encode())
+        #####
+        sock.close()
+        return result 
+    except:
+        return "--Connection refused2-----"
     
 
 def execute(s, com = 0):
@@ -106,10 +115,9 @@ def dcd(data):
     return dtd
 
 
-def addSolution(userId, competitionId, sol, comp, time):
+def addSolution(userId, competitionId, sol, filename, time, res):
     solution = base64.b64encode(sol).decode('utf-8')
-    execute("insert into solutions(userId, competitionId, solution, compiler, time, result, status) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(comp) + "', '" + str(time)  + "', '0', 'waiting')", 1)
-    return execute("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'npeasy' AND   TABLE_NAME   = 'solutions';")[0][0] - 1
+    execute("insert into solutions(userId, competitionId, solution, filename, time, result, status) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(filename) + "', '" + str(time)  + "', '0', '" + str(res) + "')", 1)
     
     
 def joincomp(userId, competitionId):

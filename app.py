@@ -108,15 +108,20 @@ def submissions(competitionId):
     subs = []
     rows = execute("select * from solutions where competitionId = '" + str(competitionId) + "'")
     for i in rows:
+        status = 'something wrong'
         if i[7] != 'end' or i[7] != 'error':
-            status = stat(i[0])
+            status = str(stat(i[0]))[2:-5]
             log(str(i[0]))
             log(str(status))
-            if status == 'end':
+            if 'refused' in status:
+                result = run(i[3], i[4], i[0])
+            ###
+            if status == 'END':
                 res = getRes(i[0])
                 log(str(i[0]))
                 log(str(res))
-        subs.append({"competitionId":competitionId, "userId": i[1], "compiler": i[4], "submissionDateTime": i[5], "status": i[7], "result": i[6], "time": ""})
+                ######
+        subs.append({"competitionId":competitionId, "userId": i[1], "filename": i[4], "submissionDateTime": i[5], "status": str(status), "result": i[6], "time": ""})
     ans = subs
     return ans, 200
     
@@ -152,14 +157,15 @@ def submit(data, filename, token, userId, competitionId):
         return {"error":"wrong file type"}, 401
     
     ##### save sol 
-    solutionId = addSolution(userId, competitionId, sol, comp, time)
+    solutionId = execute("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'npeasy' AND   TABLE_NAME   = 'solutions';")[0][0]
     res = run(sol, filename, solutionId)
     log("res:" + str(res))
+    addSolution(userId, competitionId, sol, filename, time, res)
     ##### answer
     rows = execute("select * from solutions where userId = '" + str(userId) + "'")
     sols = []
     for i in rows:
-        sols.append({"competitionId": i[2], "solution": i[3], "compiler":i[4], "submissionDateTime":i[5], "status":i[7], "result":i[6], "time":""})
+        sols.append({"competitionId": i[2], "solution": i[3], "filename":i[4], "submissionDateTime":i[5], "status":i[7], "result":i[6], "time":""})
         
     ans = {"error":"null", "solutions":sols}
     return ans, 200
