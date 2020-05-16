@@ -17,7 +17,7 @@ function LeaderboardItem(props) {
     <div className={styles.line} key={s.id}>
       <div className={styles.firstCol}>{props.private ? props.arr.length - i : i + 1}</div>
       <div className={styles.secondCol.concat(` ${styles.team}`)}>{author ? author.username : ''}</div>
-      <div className={styles.thirdCol}>{s.result || 'no result yet'}</div>
+      <div className={styles.thirdCol}>{s.result || '-'}</div>
       <div className={styles.fourthCol}>{props.private ? s.status : (!!author && props.submissions.filter(s => s.userId === author.id).length)}</div>
       <div className={styles.fifthCol}>{moment(s.submissionDateTime).locale('ru', localization).fromNow()}</div>
     </div>

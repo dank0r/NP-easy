@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import TextField from '@material-ui/core/TextField';
 import styles from './index.module.css';
-import { signIn } from "../../../actions";
+import { signIn, popupShow } from "../../../actions";
 
 function SingInPage(props) {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ function SingInPage(props) {
   });
 
   function handleSignIn() {
-    props.signIn({ username, password });
+    props.signIn({ username, password }).catch(action => props.popupShow('Oops', action.error.response.data.error));
   }
 
   return (
@@ -51,8 +52,9 @@ const mapStateToProps = state => ({
   users: state.users.list,
 });
 
-const mapDispatchToProps = dispatch => ({
-  signIn: (params) => dispatch(signIn(params)),
-});
+const mapDispatchToProps = dispatch => bindActionCreators({
+  signIn,
+  popupShow,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SingInPage));

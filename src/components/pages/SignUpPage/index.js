@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import TextField from '@material-ui/core/TextField';
 import styles from './index.module.css';
-import { signUp } from "../../../actions";
+import { signUp, popupShow } from "../../../actions";
 
 function SignUpPage(props) {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ function SignUpPage(props) {
   });
 
   function handleSignUp() {
-    props.signUp({ username, password, email });
+    props.signUp({ username, password, email }).catch(action => props.popupShow('Oops', action.error.response.data.error));
   }
 
   return (
@@ -49,8 +50,9 @@ const mapStateToProps = state => ({
   users: state.users.list,
 });
 
-const mapDispatchToProps = dispatch => ({
-  signUp: (params) => dispatch(signUp(params)),
-});
+const mapDispatchToProps = dispatch => bindActionCreators({
+  signUp,
+  popupShow,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignUpPage));

@@ -14,7 +14,7 @@ function CompetitionsList(props) {
     props.fetchCompetitions();
   }, [props.me]);
   const comps = props.competitions.map(c => <ListItem key={c.id} competition={c}/>);
-  let myComps = props.myCompetitions.map(id => props.competitions.find(c => c.id === id)).map(c => <ListItem key={c.id} competition={c}/>);
+  let myComps = props.competitions.filter(c => props.myCompetitions.some(id => id === c.id)).map(c => <ListItem key={c.id} competition={c}/>);
   return (
     <div className={props.dark ? styles.container.concat(` ${styles.dark}`) : styles.container}>
       {myComps.length && props.me ?

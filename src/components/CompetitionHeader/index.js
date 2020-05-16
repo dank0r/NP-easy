@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { fetchCompetitions, joinCompetition } from '../../actions';
 import { connect } from 'react-redux';
 import { useParams, withRouter } from "react-router-dom";
+import moment from 'moment';
 import styles from './index.module.css';
 
 function CompetitionHeader(props) {
@@ -36,7 +37,7 @@ function CompetitionHeader(props) {
             <div className={styles.title}>{!competition || competition.title}</div>
             <div className={styles.brief}>{!competition || competition.briefDescription}</div>
           </div>
-          <div className={styles.details}>2 месяца осталось • {!competition || competition.teams} команды</div>
+          <div className={styles.details}>{competition && moment(competition.deadline).fromNow(true)} осталось • {competition && competition.teams} команды</div>
         </div>
         <div className={props.dark ? styles.bottomMenu.concat(` ${styles.dark}`) : styles.bottomMenu}>
           <div className={styles.buttonsWrapper}>
