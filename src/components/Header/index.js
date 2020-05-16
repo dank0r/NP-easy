@@ -59,10 +59,8 @@ function SignInUpInvitation(props) {
 
 function Header(props) {
   const [me, setMe] = useState(null);
-  const [dark, setDark] = useState(null);
 
   useEffect(() => {
-    console.log(123);
     const me = props.users.find(u => u.isMe);
     if(me) {
       setMe(me);
@@ -79,9 +77,8 @@ function Header(props) {
       <SearchInput placeholder={'Поиск'} className={styles.search} />
       <Switch
         name="dark"
-        checked={dark}
+        checked={props.dark}
         onChange={() => {
-          setDark(!dark);
           props.toggleDark();
         }}
       />

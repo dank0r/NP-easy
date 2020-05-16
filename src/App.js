@@ -20,14 +20,13 @@ import MainPage from './components/pages/MainPage/';
 import CompetitionPage from './components/pages/CompetitionPage/';
 import SignInPage from './components/pages/SignInPage';
 import SignUpPage from './components/pages/SignUpPage';
-
-/*http://194.87.239.214:9090/*/
+import AlertPopUp from './components/AlertPopUp';
 
 const client = axios.create({
   baseURL:'http://194.87.239.214:9090/',
   responseType: 'json'
 });
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
+const store = createStore(reducer, applyMiddleware(axiosMiddleware(client, { returnRejectedPromiseOnError: true })));
 const history = createBrowserHistory();
 
 const theme = createMuiTheme({});
@@ -43,6 +42,7 @@ function App(props) {
     <Router history={history}>
       <ThemeProvider theme={theme}>
       <Provider store={store}>
+        <AlertPopUp />
         <Switch>
           <Route exact path="/">
             <MainPage />

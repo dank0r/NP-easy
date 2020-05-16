@@ -49,7 +49,7 @@ function CompetitionHeader(props) {
           </div>
         </div>
       </div>
-      {props.render(tab)}
+      {props.render(tab, setTab)}
     </div>
   );
 }

@@ -180,3 +180,11 @@ export function toggleDark() {
     type: 'TOGGLE_DARK'
   }
 }
+
+export function popupShow(title, text) {
+  return {
+    type: 'POP_UP_SHOW',
+    title,
+    text
+  }
+}

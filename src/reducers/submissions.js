@@ -15,15 +15,15 @@ const submissions = (state={list: [], isLoading: false, error: null}, action) =>
     case 'SUBMIT_SOLUTION_REQUEST':
       return {...state, isLoading: true};
     case 'SUBMIT_SOLUTION_SUCCESS':
-      return {...state, isLoading: false, list: action.payload.data ? state.list.concat(action.payload.data) : state.list};
+      return {...state, isLoading: false};
     case 'SUBMIT_SOLUTION_FAILURE':
       return {...state, isLoading: false, error: 'err'};
 
     case 'FETCH_SUBMISSIONS_REQUEST':
       return {...state, isLoading: true};
     case 'FETCH_SUBMISSIONS_SUCCESS':
-      return {...state, isLoading: false, list: state.list.concat(action.payload.data
-          .filter(sNew => !state.list.some(sOld => sOld.id === sNew.id)))};
+      return {...state, isLoading: false, list: state.list.filter(s => s.competitionId !== action.meta.previousAction.payload.request.data.competitionId)
+          .concat(action.payload.data)};
     case 'FETCH_SUBMISSIONS_FAILURE':
       return {...state, isLoading: false, error: 'err'};
     default:

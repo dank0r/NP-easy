@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Icon } from 'react-icons-kit';
 import { upload } from 'react-icons-kit/fa/upload';
 import styles from './index.module.css';
-import {submitSolution} from '../../actions';
+import {submitSolution, popupShow} from '../../actions';
+import AlertPopUp from '../AlertPopUp';
 
-function ListItem(props) {
+function SubmitSolution(props) {
   const [ file, setFile ] = useState(null);
 
   function handleChange(e) {
@@ -28,7 +30,9 @@ function ListItem(props) {
         const userId = props.me.id;
         const token = props.me.token;
         const competitionId = props.competition.id;
-        props.submitSolution({ data, filename, userId, token, competitionId });
+        props.submitSolution({ data, filename, userId, token, competitionId })
+          .then(() => props.popupShow('Oh yeah', 'Ваше решение отправлено успешно :)'));
+        props.setTab(2);
       });
     }
   }
@@ -58,8 +62,9 @@ const mapStateToProps = state => ({
   me: state.users.list.find(u => u.isMe),
 });
 
-const mapDispatchToProps = dispatch => ({
-  submitSolution: (params) => dispatch(submitSolution(params)),
-});
+const mapDispatchToProps = dispatch => bindActionCreators({
+  submitSolution,
+  popupShow,
+}, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ListItem));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SubmitSolution));
