@@ -108,20 +108,38 @@ def submissions(competitionId):
     subs = []
     rows = execute("select * from solutions where competitionId = '" + str(competitionId) + "'")
     for i in rows:
-        status = 'something wrong'
-        if i[7] != 'end' or i[7] != 'error':
-            status = str(stat(i[0]))[2:-5]
-            log(str(i[0]))
-            log(str(status))
+        status = i[7].lower()
+        res = i[6]
+        if 'error' in status:
+            status = run(i[3], i[4], i[0]).lower()
+            
+            if 'ok' in status:
+                status = 'accepted'
+            else:
+                status = 'error socket nether'
+            updateStat(i[0], status)
+        elif 'accepted' in status or 'waiting' in status:
+            status = str(stat(i[0])).lower()
             if 'refused' in status:
-                result = run(i[3], i[4], i[0])
-            ###
-            if status == 'END':
+                status = 'err 1'
+            elif 'wait' in status:
+                status = 'waiting'
+            elif 'end' in status:
+                status = 'end'
                 res = getRes(i[0])
-                log(str(i[0]))
-                log(str(res))
-                ######
-        subs.append({"competitionId":competitionId, "userId": i[1], "filename": i[4], "submissionDateTime": i[5], "status": str(status), "result": i[6], "time": ""})
+                if res is None:
+                    status = 'err 2'
+                    res = '0'
+                else:
+                    res = res[2:-1]
+                    updt(i[0], res)
+            elif 'ce' in status:
+                status = 'compilation ERR'
+            else:
+                status = 'timelimit'
+            updateStat(i[0], status)
+            
+        subs.append({"competitionId":competitionId, "userId": i[1], "filename": i[4], "submissionDateTime": i[5], "status": str(status), "result": res, "time": ""})
     ans = subs
     return ans, 200
     
@@ -158,9 +176,14 @@ def submit(data, filename, token, userId, competitionId):
     
     ##### save sol 
     solutionId = execute("SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'npeasy' AND   TABLE_NAME   = 'solutions';")[0][0]
-    res = run(sol, filename, solutionId)
-    log("res:" + str(res))
-    addSolution(userId, competitionId, sol, filename, time, res)
+    stat = str(run(sol, filename, solutionId)).lower()
+    if 'ok' in stat:
+        stat = 'accepted'
+    else:
+        stat = 'error socket'
+    log("res:" + str(stat))
+    addSolution(userId, competitionId, sol, filename, time, stat)
+    updt(solutionId, '0')
     ##### answer
     rows = execute("select * from solutions where userId = '" + str(userId) + "'")
     sols = []

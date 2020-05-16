@@ -5,6 +5,7 @@ import base64
 from config import *
 import subprocess
 import socket
+import traceback
 
 salt = 'loleasy'
 
@@ -22,15 +23,17 @@ def run(sol, filename, solutionId):
         sock = socket.socket()
         sock.connect(('localhost', 1100))
         #####
-        snd(sock, (str(solutionId) + '\0').encode())
-        snd(sock, (str(0) + '\0').encode())
-        snd(sock, str(filename + '\0').encode())
-        result = snd(sock, sol)
+        log(snd(sock, (str(solutionId) + '\0').encode()))
+        log(snd(sock, (str(0) + '\0').encode()))
+        log(snd(sock, str(filename + '\0').encode()))
+        log(str(type(sol)))
+        result = snd(sock, bytes(sol.decode('utf-8') + '\0', 'utf-8'))
         #####
         sock.close()
         return result
     except:
-        return "--Connection refused0-----"
+        log(str(traceback.format_exc()))
+        return "Error 0"
 
 
 def stat(solutionId):
@@ -44,7 +47,11 @@ def stat(solutionId):
         sock.close()
         return result 
     except:
-        return "--Connection refused1-----"
+        return "refused 1"
+    
+    
+def updt(solutionId, result):
+    execute("update solutions set result = '" + result + "' where id = '" + str(solutionId) + "'", 1)
     
     
 def getRes(solutionId):
@@ -53,12 +60,12 @@ def getRes(solutionId):
         sock.connect(('localhost', 1100))
         #####
         snd(sock, (str(solutionId) + '\0').encode())
-        result = snd(sock, (str(2) + '\0').encode())
+        result = snd(sock, (str(2) + '\0').encode('utf-8'))
         #####
         sock.close()
         return result 
     except:
-        return "--Connection refused2-----"
+        return None
     
 
 def execute(s, com = 0):
@@ -94,9 +101,13 @@ def checkToken(chk, ids = 2):
     return None
 
 
+def updateStat(solutionId, status):
+    execute("update solutions set status = '" + str(status) + "' where id = '" + str(solutionId) + "'", 1)
+
+
 def createToken(usr):
     token = urandom(16).hex()
-    execute("insert into tokens(username, token) values('" + usr +"', '" + str(token) + "')", 1)
+    execute("insert into tokens(username, token) values('" + str(usr) +"', '" + str(token) + "')", 1)
     return token
     
 
@@ -115,9 +126,9 @@ def dcd(data):
     return dtd
 
 
-def addSolution(userId, competitionId, sol, filename, time, res):
+def addSolution(userId, competitionId, sol, filename, time, stat):
     solution = base64.b64encode(sol).decode('utf-8')
-    execute("insert into solutions(userId, competitionId, solution, filename, time, result, status) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(filename) + "', '" + str(time)  + "', '0', '" + str(res) + "')", 1)
+    execute("insert into solutions(userId, competitionId, solution, filename, time, result, status) values('" + str(userId) + "', '" + str(competitionId) + "', '" + str(solution) + "', '" + str(filename) + "', '" + str(time)  + "', '0', '" + str(stat) + "')", 1)
     
     
 def joincomp(userId, competitionId):

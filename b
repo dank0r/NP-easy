@@ -32,6 +32,6 @@ fi
 if [[ $1 == "l" ]];
 then 	
 	echo 'logs';
-	tail /root/back/log.txt;
+	tail /root/back/log.txt -n 20;
 fi
 
