@@ -8,9 +8,10 @@
 #include <setjmp.h>
 #include <signal.h>
 
-const unsigned int port = 1100; 
-const int VERY_BIG = 1024 * 1024;
-const int MAX_LEN = 1024;
+#define PORT 1100
+#define VERY_BIG 1024 * 1024
+#define MAX_LEN 1024
+#define MAX_CONTAINERS 2
 
 int socConnectFD;
 
@@ -38,10 +39,11 @@ int main()
 	char buf[VERY_BIG]; 
 	char name[MAX_LEN];
 	char actionId[2];
+	int currentContainers = 0;
 	char solutionId[MAX_LEN];
 	struct sockaddr_in stSockAddr;
 	stSockAddr.sin_family = PF_INET;
-	stSockAddr.sin_port = htons (port); 
+	stSockAddr.sin_port = htons (PORT); 
 	stSockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	int mySocket = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (mySocket == -1)
@@ -61,7 +63,7 @@ int main()
 		close(mySocket);
 		return -3;
 	}
-
+	printf("Server started normally.\n");
 	for (;;)
 	{
 		struct sockaddr_in client_addr; 
@@ -76,6 +78,7 @@ int main()
 		read(socConnectFD, solutionId, sizeof(solutionId));
 		printf("SolutionId %s\n", solutionId);
 		write(socConnectFD, "OK", sizeof("OK"));
+		printf("OK\n");
 		read(socConnectFD, actionId, sizeof(actionId));
 		printf("ActionId %s\n", actionId);
 		switch (actionId[0])
@@ -83,15 +86,19 @@ int main()
 			case '0':
 			{
 				write(socConnectFD, "OK", sizeof("OK"));
+				printf("OK\n");
 				int resultMkdir = system(concat("mkdir ", solutionId));
 				read(socConnectFD, name, sizeof(name));
 				int end_name = 0;
 				while (name[end_name] != '\0')
 					end_name++;
 				write(socConnectFD, "OK", sizeof("OK"));
-
+				printf("OK\n");
 				read(socConnectFD, buf, sizeof(buf));
 				write(socConnectFD, "OK", sizeof("OK"));
+				printf("OK\n");
+				shutdown(socConnectFD, SHUT_RDWR);
+				close(socConnectFD);
 				if (resultMkdir == -1)
 					break;
 				char fpPath[MAX_LEN];
@@ -105,6 +112,7 @@ int main()
 				else
 					sprintf(runCommand, "/root/sandbox/cpp_docker.sh %s %s &%c", solutionId, name, '\0');
 				system(runCommand);
+				currentContainers++;
 				break;
 			}
 			case '1':
@@ -116,6 +124,7 @@ int main()
 				if (returnCodeFile == NULL)
 				{
 					write(socConnectFD, "NO", sizeof("NO"));
+					printf("NO\n");
 					break;
 				}
 				int returnCodeSize = fscanf(returnCodeFile, "%s", returnCode);
@@ -123,21 +132,28 @@ int main()
 				if (returnCodeSize == -1)
 				{
 					write(socConnectFD, "WAIT", sizeof("WAIT"));
+					printf("WAIT\n");
 				}
 				else
 				{
 					if (returnCode[0] == '0') 
 					{
 						write(socConnectFD, "END", sizeof("END"));
+						printf("END\n");
+						currentContainers--;
 					}
 					else
 					{
 						write(socConnectFD, "CE", sizeof("CE"));
+						printf("CE\n");
+						currentContainers--;
 						char rmCommand[MAX_LEN];
 						sprintf(rmCommand, "rm -r /root/sandbox/%s", solutionId);
 						system(rmCommand);
 					}
 				}
+				shutdown(socConnectFD, SHUT_RDWR);
+				close(socConnectFD);
 				break;
 			}
 			case '2':
@@ -158,7 +174,14 @@ int main()
 				}
 				for (int i = 0; i < n; i++)
 				{
-					fscanf(outputFile, "%d", &ans[i]);
+					if (fscanf(outputFile, "%d", &ans[i]) < 0)
+					{
+						write(socConectFD, "NO_OUTPUT\0", sizeof("NO_OUTPUT\0"));
+						printf("NO_OUTPUT\n");
+						shutdown(socConnectFD, SHUT_RDWR);
+						close(socConnectFD);
+						break;
+					}
 				}
 				fclose(outputFile);
 				for (int i = 0; i < n; i++)
@@ -179,6 +202,7 @@ int main()
 					len++;
 				}
 				write(socConnectFD, endMessage, len);
+				printf("ANSWER %f\n", end);
 				for (int  i = 0; i < n; i++)
 				{
 					if (matrix[i] != NULL)
@@ -197,15 +221,18 @@ int main()
 				char rmCommand[MAX_LEN];
 				sprintf(rmCommand, "rm -r /root/sandbox/%s", solutionId);
 				system(rmCommand);
+				shutdown(socConnectFD, SHUT_RDWR);
+				close(socConnectFD);
 				break;
 			}
 			default:
 			{
 				write(socConnectFD, "ERROR", sizeof("ERROR"));
+				printf("ERROR\n");
+				shutdown(socConnectFD, SHUT_RDWR);
+				close(socConnectFD);
 			}
 		}
-		shutdown(socConnectFD, SHUT_RDWR);
-		close(socConnectFD);
 	}
 	return 0;
 }
