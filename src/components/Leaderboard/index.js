@@ -30,18 +30,21 @@ function Leaderboard(props) {
   useEffect(() => {
     if(props.competition) {
       const competitionId = props.competition.id;
-      props.fetchSubmissions({competitionId});
       if(!intervalId) {
-        const interval = setInterval(() => {
+        props.fetchSubmissions({competitionId});
+        setIntervalId(setInterval(() => {
           props.fetchSubmissions({competitionId});
-        }, 10000);
-        setIntervalId(interval);
+        }, 10000));
       } else if(props.submissions && !props.submissions.some(s => s.status === 'testing')) {
+        console.log(intervalId);
         clearInterval(intervalId);
-        setIntervalId(null);
       }
     }
-  }, []);
+    return () => {
+      console.log(intervalId);
+      clearInterval(intervalId);
+    };
+  }, [intervalId]);
   const submissions = props.submissions.filter(s => s.competitionId === props.competition.id);
   let leaderboardItems = [...submissions].sort((s1, s2) => s1.submissionDateTime < s2.submissionDateTime ? 1 : -1);
   if(props.private && props.me) {
