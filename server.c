@@ -8,7 +8,7 @@
 #include <setjmp.h>
 #include <signal.h>
 
-const unsigned int port = 1100; //порт для связи
+const unsigned int port = 1100; 
 const int VERY_BIG = 1024 * 1024;
 const int MAX_LEN = 1024;
 
@@ -35,7 +35,7 @@ void signalEndHandler(int signum)
 int main()
 {
 	signal(SIGINT, signalEndHandler);
-	char buf[VERY_BIG]; //буфер для получения данных
+	char buf[VERY_BIG]; 
 	char name[MAX_LEN];
 	char actionId[2];
 	char solutionId[MAX_LEN];
@@ -73,12 +73,11 @@ int main()
 			close(socConnectFD);
 			return -4;
 		}
-                //printf ("%d/", ntohs(client_addr.sin_addr.s_addr));
 		read(socConnectFD, solutionId, sizeof(solutionId));
-		printf("\nsolutionId %s\n", solutionId);
+		printf("SolutionId %s\n", solutionId);
 		write(socConnectFD, "OK", sizeof("OK"));
 		read(socConnectFD, actionId, sizeof(actionId));
-		printf("\nactionId %s\n", actionId);
+		printf("ActionId %s\n", actionId);
 		switch (actionId[0])
 		{
 			case '0':
@@ -86,28 +85,39 @@ int main()
 				write(socConnectFD, "OK", sizeof("OK"));
 				int resultMkdir = system(concat("mkdir ", solutionId));
 				read(socConnectFD, name, sizeof(name));
+				int end_name = 0;
+				while (name[end_name] != '\0')
+					end_name++;
 				write(socConnectFD, "OK", sizeof("OK"));
+
 				read(socConnectFD, buf, sizeof(buf));
 				write(socConnectFD, "OK", sizeof("OK"));
 				if (resultMkdir == -1)
 					break;
 				char fpPath[MAX_LEN];
-				sprintf(fpPath, "./%s/%s%c", solutionId, name, '\0');
+				sprintf(fpPath, "/root/sandbox/%s/%s%c", solutionId, name, '\0');
 				FILE *fp = fopen(fpPath, "wb");
 				fprintf(fp, "%s", buf);
 				fclose(fp);
 				char runCommand[MAX_LEN];
-				sprintf(runCommand, "./docker.sh %s %s &%c", solutionId, name, '\0');
-				//sprintf(runCommand, "./docker.sh %s %s", solutionId, name);
+				if (name[end_name - 1] == 'y')
+					sprintf(runCommand, "/root/sandbox/python_docker.sh %s %s &%c", solutionId, name, '\0');
+				else
+					sprintf(runCommand, "/root/sandbox/cpp_docker.sh %s %s &%c", solutionId, name, '\0');
 				system(runCommand);
 				break;
 			}
 			case '1':
 			{
 				char returnCodePath[MAX_LEN];
-				sprintf(returnCodePath, "./%s/return_code%c", solutionId, '\0');
+				sprintf(returnCodePath, "/root/sandbox/%s/return_code%c", solutionId, '\0');
 				char returnCode[MAX_LEN];
 				FILE *returnCodeFile = fopen(returnCodePath, "r");
+				if (returnCodeFile == NULL)
+				{
+					write(socConnectFD, "NO", sizeof("NO"));
+					break;
+				}
 				int returnCodeSize = fscanf(returnCodeFile, "%s", returnCode);
 				fclose(returnCodeFile);
 				if (returnCodeSize == -1)
@@ -123,6 +133,9 @@ int main()
 					else
 					{
 						write(socConnectFD, "CE", sizeof("CE"));
+						char rmCommand[MAX_LEN];
+						sprintf(rmCommand, "rm -r /root/sandbox/%s", solutionId);
+						system(rmCommand);
 					}
 				}
 				break;
@@ -130,25 +143,60 @@ int main()
 			case '2':
 			{
 				char outputPath[MAX_LEN];
-				sprintf(outputPath, "./%s/output%c", solutionId, '\0');
+				sprintf(outputPath, "/root/sandbox/%s/output%c", solutionId, '\0');
 				FILE *outputFile = fopen(outputPath, "r");
-				char *outputBuf;
-				ssize_t outputSize;
-				ssize_t tmp;
-				outputSize = getline(&outputBuf, &tmp, outputFile);
-				if (outputSize == 0)
+				FILE *inputFile = fopen("/root/sandbox/input", "r");
+				int n;
+				char empty;
+				fscanf(inputFile, "%d", &n);
+				fscanf(inputFile, "%c", &empty);
+				int * ans = malloc(n * sizeof(int));
+				float ** matrix = malloc(n * sizeof(float *));
+				for (int i = 0; i < n; i++)
 				{
-					write(socConnectFD, "NO_OUTPUT", sizeof("NO_OUTPUT"));
+					matrix[i] = malloc(n * sizeof(float));
 				}
-				else
+				for (int i = 0; i < n; i++)
 				{
-					write(socConnectFD, outputBuf, outputSize);
+					fscanf(outputFile, "%d", &ans[i]);
 				}
-				free(outputBuf);
-				char rmCommand[MAX_LEN];
-				sprintf(rmCommand, "rm -r ./%s", solutionId);
-				system(rmCommand);
 				fclose(outputFile);
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < n; j++)
+						fscanf(inputFile, "%f", &matrix[i][j]);
+					fscanf(inputFile, "%c", &empty);
+				}
+				fclose(inputFile);
+				float end;
+				for (int i = 1; i < n; i++)
+					end += matrix[ans[i - 1]][ans[i]];
+				char endMessage[MAX_LEN];
+				sprintf(endMessage, "%f%c", end, '\0');
+				int len = 0;
+				while (endMessage[len] != '\0')
+				{
+					len++;
+				}
+				write(socConnectFD, endMessage, len);
+				for (int  i = 0; i < n; i++)
+				{
+					if (matrix[i] != NULL)
+					{
+						free(matrix[i]);
+					}
+				}
+				if (matrix != NULL)
+				{
+					free(matrix);
+				}
+				if (ans != NULL)
+				{
+					free(ans);
+				}
+				char rmCommand[MAX_LEN];
+				sprintf(rmCommand, "rm -r /root/sandbox/%s", solutionId);
+				system(rmCommand);
 				break;
 			}
 			default:
