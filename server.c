@@ -168,7 +168,7 @@ int main()
 					fscanf(inputFile, "%c", &empty);
 				}
 				fclose(inputFile);
-				float end;
+				float end = 0;
 				for (int i = 1; i < n; i++)
 					end += matrix[ans[i - 1]][ans[i]];
 				char endMessage[MAX_LEN];
