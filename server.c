@@ -176,7 +176,7 @@ int main()
 				{
 					if (fscanf(outputFile, "%d", &ans[i]) < 0)
 					{
-						write(socConectFD, "NO_OUTPUT\0", sizeof("NO_OUTPUT\0"));
+						write(socConnectFD, "NO_OUTPUT\0", sizeof("NO_OUTPUT\0"));
 						printf("NO_OUTPUT\n");
 						shutdown(socConnectFD, SHUT_RDWR);
 						close(socConnectFD);
