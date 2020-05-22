@@ -34,7 +34,7 @@ function Leaderboard(props) {
       if(!intervalId) {
         const interval = setInterval(() => {
           props.fetchSubmissions({competitionId});
-        }, 5000);
+        }, 10000);
         setIntervalId(interval);
       } else if(props.submissions && !props.submissions.some(s => s.status === 'testing')) {
         clearInterval(intervalId);

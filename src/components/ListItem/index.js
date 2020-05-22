@@ -15,7 +15,7 @@ function ListItem(props) {
         <div className={styles.info}>
           <div className={styles.title}>{title}</div>
           <div className={styles.description}>{briefDescription}</div>
-          <div className={styles.details}>{moment(deadline).fromNow(true)} осталось • {teams} команды</div>
+          <div className={styles.details}>{moment(deadline).fromNow(true)} остался • {teams} команды</div>
         </div>
       </div>
     </div>
