@@ -8,8 +8,7 @@ import CompetitionHeader from "../CompetitionHeader";
 import SubmitSolution from '../SubmitSolution';
 import Leaderboard from '../Leaderboard';
 
-const temp = '<h1>Поменять потом</h1>>' +
-  '<h2>Постановка задачи</h2>' +
+const temp = '<h2>Постановка задачи</h2>' +
   'Задача коммивояжёра (или TSP от англ. Travelling salesman problem) — одна из самых известных задач комбинаторной оптимизации, заключающаяся в поиске кратчайшего маршрута, проходящего через указанные города по одному разу с последующим возвратом в исходный город.' +
   '<h2>Входные данные</h2>' +
   '<h3>stdin или input.txt:</h3>' +

@@ -52,7 +52,8 @@ function Leaderboard(props) {
   } else {
     leaderboardItems = leaderboardItems
       .reduce((acc, s) => acc.some(ss => ss.userId === s.userId) ? acc : acc.concat(s), [])
-      .sort((s1, s2) => +s1.result - +s2.result);
+      .sort((s1, s2) => +s1.result - +s2.result)
+      .filter(s => s.result !== '');
   }
   leaderboardItems = leaderboardItems.map((s, i, arr) => <LeaderboardItem key={s.id || i} {...props} s={s} i={i} submissions={submissions} arr={arr} />);
   return (
